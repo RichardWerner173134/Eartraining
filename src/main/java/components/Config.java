@@ -8,7 +8,7 @@ public class Config {
     private ScaleDegreeMix scaleDegreeMix;
 
     private Config(){
-        numberOfNotes = NumberOfNotes.ONE;
+        numberOfNotes = NumberOfNotes.THREE;
         scaleDegreeMix = ScaleDegreeMix.ONE_FOUR_FIVE;
     }
 
@@ -35,6 +35,10 @@ public class Config {
         return numberOfNotes;
     }
 
+    public int getIntNumberOfNotes(){
+        return this.numberOfNotes.getNumberOfNotes();
+    }
+
     public enum NumberOfNotes{
 
         ONE(1),
@@ -51,6 +55,10 @@ public class Config {
 
         public String toString(){
             return String.valueOf(this.numberOfNotes);
+        }
+
+        public int getNumberOfNotes(){
+            return numberOfNotes;
         }
     }
 

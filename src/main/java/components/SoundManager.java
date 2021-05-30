@@ -1,12 +1,14 @@
 package components;
 
 
+import lombok.Getter;
 import org.jfugue.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public class SoundManager {
 
     private List<Sound> sounds;
@@ -17,7 +19,6 @@ public class SoundManager {
         sounds = new ArrayList<>();
 
         config = Config.getInstance();
-
 
         this.sounds = pickSound();
         playCurrentSound();
@@ -94,12 +95,7 @@ public class SoundManager {
 
     public void playCadence(){
         Player player = new Player();
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                player.play("CMajQQ FMajQQ GMajQQ");
-            }
-        });
+        Thread t = new Thread(() -> player.play("CMajQ FMajQ GMajQ CMajQQ"));
         t.start();
     }
 }

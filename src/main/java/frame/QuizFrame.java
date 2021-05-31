@@ -183,29 +183,29 @@ public class QuizFrame extends JFrame implements ActionListener {
         } else if (btnShowAnswer.equals(source)) {
             sm.playNewSound();
         } else if (btnONE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.ONE);
+            isAdded = answer.addAnswer(Sound.ONE3);
         } else if (btnTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.TWO);
+            isAdded = answer.addAnswer(Sound.TWO3);
         } else if (btnTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.THREE);
+            isAdded = answer.addAnswer(Sound.THREE3);
         } else if (btnFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FOUR);
+            isAdded = answer.addAnswer(Sound.FOUR3);
         } else if (btnFIVE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FIVE);
+            isAdded = answer.addAnswer(Sound.FIVE3);
         } else if (btnSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SIX);
+            isAdded = answer.addAnswer(Sound.SIX3);
         } else if (btnSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SEVEN);
+            isAdded = answer.addAnswer(Sound.SEVEN3);
         } else if (btnFLATTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_TWO);
+            isAdded = answer.addAnswer(Sound.FLAT_TWO3);
         } else if (btnFLATTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_THREE);
+            isAdded = answer.addAnswer(Sound.FLAT_THREE3);
         } else if (btnSHARPFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SHARP_FOUR);
+            isAdded = answer.addAnswer(Sound.SHARP_FOUR3);
         } else if (btnFLATSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SIX);
+            isAdded = answer.addAnswer(Sound.FLAT_SIX3);
         } else if (btnFLATSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SEVEN);
+            isAdded = answer.addAnswer(Sound.FLAT_SEVEN3);
         } else if (btnBack.equals(source)) {
             new Home();
             dispose();

@@ -61,7 +61,7 @@ public class SoundManager {
         Random rand = new Random();
 
         for(int i = 0; i < config.getIntNumberOfNotes(); i++){
-            Sound newSound = generateSound(rand.nextInt(7) + 1, rand.nextInt(2));
+            Sound newSound = generateSound(rand.nextInt(7) + 1, rand.nextInt(2), rand.nextInt(3) + 3);
             if(!pickedSounds.contains(newSound)) {
                 pickedSounds.add(newSound);
             } else {
@@ -77,17 +77,17 @@ public class SoundManager {
         playCurrentSound();
     }
 
-    private Sound generateSound(int scaleDegree, int accidental) {
+    private Sound generateSound(int scaleDegree, int accidental, int octave) {
         if(scaleDegree == 1 || scaleDegree == 5){
-            return Sound.getSoundType(scaleDegree, 'n');
+            return Sound.getSoundType(scaleDegree, 'n', octave);
         } else {
             if(accidental == 0) {
-                return Sound.getSoundType(scaleDegree, 'n');
+                return Sound.getSoundType(scaleDegree, 'n', octave);
             } else {
                 if(scaleDegree == 4){
-                    return Sound.getSoundType(scaleDegree, '#');
+                    return Sound.getSoundType(scaleDegree, '#', octave);
                 }else {
-                    return Sound.getSoundType(scaleDegree, 'b');
+                    return Sound.getSoundType(scaleDegree, 'b', octave);
                 }
             }
         }

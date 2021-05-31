@@ -4,11 +4,10 @@
     <list default="true" id="dfac4d4f-067e-4c78-a3d6-9b61bd2d85ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/QuizFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/QuizFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Answer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Answer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/components/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Sound.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/SoundManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/frame/QuizFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/QuizFrame.class" afterDir="false" />
     </list>
@@ -109,13 +108,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/components/Sound.java</url>
-          <line>57</line>
+          <line>92</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/components/Answer.java</url>
           <line>45</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/components/SoundManager.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/components/Sound.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -26,16 +26,18 @@ public class Home extends JFrame {
         setVisible(true);
         setLayout(new BorderLayout());
 
-        panCenterFlow.setBackground(Color.ORANGE);
+        panCenterFlow.setBackground(Color.WHITE);
 
         add(panCenterFlow, BorderLayout.CENTER);
-        panCenterFlow.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 400));
+        panCenterFlow.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 250));
 
-        btnPlay.setPreferredSize(new Dimension(100, 100));
-        btnOptions.setPreferredSize(new Dimension(100, 100));
+        btnPlay.setPreferredSize(new Dimension(100, 60));
+        btnPlay.setBorder(BorderFactory.createRaisedBevelBorder());
+        btnOptions.setPreferredSize(new Dimension(100, 60));
+        btnOptions.setBorder(BorderFactory.createRaisedSoftBevelBorder());
 
-        btnPlay.setBackground(Color.GREEN);
-        btnOptions.setBackground(Color.BLACK);
+        btnPlay.setBackground(Color.LIGHT_GRAY);
+        btnOptions.setBackground(Color.LIGHT_GRAY);
 
         panCenterFlow.add(btnPlay);
         panCenterFlow.add(btnOptions);

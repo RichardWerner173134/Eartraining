@@ -11,16 +11,16 @@ import java.util.Random;
 @Getter
 public class SoundManager {
 
-    private List<Sound> sounds;
+    private List<Note> notes;
     private Config config;
 
 
     public SoundManager() {
-        sounds = new ArrayList<>();
+        notes = new ArrayList<>();
 
         config = Config.getInstance();
 
-        this.sounds = pickSound();
+        this.notes = pickSound();
         playCurrentSound();
     }
 
@@ -30,13 +30,13 @@ public class SoundManager {
         StringBuilder logSb = new StringBuilder();
 
         int i = 0;
-        for(Sound s : sounds){
+        for(Note note : notes){
             try {
-                logSb.append(s.getSoundString()).append(", ");
+                logSb.append(note.getSoundString()).append(", ");
                 sb.append("V")
                         .append(i)
                         .append(" ")
-                        .append(s.getSoundString())
+                        .append(note.getSoundString())
                         .append("QQQQ")
                         .append(" ");
             } catch (Exception e) {
@@ -55,42 +55,59 @@ public class SoundManager {
         //t3.start();
     }
 
-    private List<Sound> pickSound() {
-        List<Sound> pickedSounds = new ArrayList<>();
+    private List<Note> pickSound() {
+        List<Note> pickedNotes = new ArrayList<>();
 
         Random rand = new Random();
 
         for(int i = 0; i < config.getIntNumberOfNotes(); i++){
-            Sound newSound = generateSound(rand.nextInt(7) + 1, rand.nextInt(2), rand.nextInt(3) + 3);
-            if(!pickedSounds.contains(newSound)) {
-                pickedSounds.add(newSound);
+            Note newRandomNote = null;
+            try {
+                newRandomNote = getNote(rand.nextInt(7) + 1, rand.nextInt(2), rand.nextInt(3) + 3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if(!pickedNotes.contains(newRandomNote)) {
+                // count accidentals in pickedNotes
+                int maxAccidentals = 1;
+                int accidentalsFound = 0;
+                for(Note note : pickedNotes){
+                    if(note.getSound().getAccidental() != 'n'){
+                        accidentalsFound++;
+                    }
+                }
+
+                // make sure there are just maxAccidentals in pickedNotes
+                if(accidentalsFound == maxAccidentals && newRandomNote.getSound().getAccidental() != 'n'){
+                    i--;
+                } else {
+                    pickedNotes.add(newRandomNote);
+                }
             } else {
                 i--;
             }
         }
 
-        return pickedSounds;
+        return pickedNotes;
     }
 
     public void playNewSound() {
-        sounds = pickSound();
+        notes = pickSound();
         playCurrentSound();
     }
 
-    private Sound generateSound(int scaleDegree, int accidental, int octave) {
+    private Note getNote(int scaleDegree, int accidental, int octave) throws Exception {
+        char n;
         if(scaleDegree == 1 || scaleDegree == 5){
-            return Sound.getSoundType(scaleDegree, 'n', octave);
+            n = 'n';
+        } else if(scaleDegree == 4){
+            n = accidental == 1 ? '#' : 'n';
         } else {
-            if(accidental == 0) {
-                return Sound.getSoundType(scaleDegree, 'n', octave);
-            } else {
-                if(scaleDegree == 4){
-                    return Sound.getSoundType(scaleDegree, '#', octave);
-                }else {
-                    return Sound.getSoundType(scaleDegree, 'b', octave);
-                }
-            }
+            n = accidental == 1 ? 'b' : 'n';
         }
+        return Note.getSoundType(scaleDegree, n, octave);
+
     }
 
     public void playCadence(){

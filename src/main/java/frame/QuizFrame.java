@@ -127,7 +127,7 @@ public class QuizFrame extends JFrame implements ActionListener {
         mgr3.setVgap(20);
         panelAnswerDisplay.setLayout(mgr3);
 
-        labelNoteCount = new JLabel("Total notes: " + sm.getSounds().size());
+        labelNoteCount = new JLabel("Total notes: " + sm.getNotes().size());
         labelNoteCount.setVisible(true);
         labelNoteCount.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -182,31 +182,32 @@ public class QuizFrame extends JFrame implements ActionListener {
             sm.playCadence();
         } else if (btnShowAnswer.equals(source)) {
             sm.playNewSound();
-        } else if (btnONE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.ONE3);
+        } /*else if (btnONE.equals(source)) {
+            isAdded = answer.addAnswer(Sound.ONE);
         } else if (btnTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.TWO3);
+            isAdded = answer.addAnswer(Sound.TWO);
         } else if (btnTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.THREE3);
+            isAdded = answer.addAnswer(Sound.THREE);
         } else if (btnFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FOUR3);
+            isAdded = answer.addAnswer(Sound.FOUR);
         } else if (btnFIVE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FIVE3);
+            isAdded = answer.addAnswer(Sound.FIVE);
         } else if (btnSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SIX3);
+            isAdded = answer.addAnswer(Sound.SIX);
         } else if (btnSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SEVEN3);
+            isAdded = answer.addAnswer(Sound.SEVEN);
         } else if (btnFLATTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_TWO3);
+            isAdded = answer.addAnswer(Sound.FLAT_TWO);
         } else if (btnFLATTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_THREE3);
+            isAdded = answer.addAnswer(Sound.FLAT_THREE);
         } else if (btnSHARPFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SHARP_FOUR3);
+            isAdded = answer.addAnswer(Sound.SHARP_FOUR);
         } else if (btnFLATSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SIX3);
+            isAdded = answer.addAnswer(Sound.FLAT_SIX);
         } else if (btnFLATSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SEVEN3);
-        } else if (btnBack.equals(source)) {
+            isAdded = answer.addAnswer(Sound.FLAT_SEVEN);
+        }*/
+        else if (btnBack.equals(source)) {
             new Home();
             dispose();
         }

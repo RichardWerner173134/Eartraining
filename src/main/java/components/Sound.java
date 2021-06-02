@@ -1,7 +1,5 @@
 package components;
 
-import java.util.HashMap;
-
 public class Sound {
 
     private int scaleDegree;

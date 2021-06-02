@@ -11,16 +11,19 @@ import java.awt.event.ActionListener;
 public class OptionsFrame extends JFrame implements ActionListener{
     private ButtonGroup buttonGroupScaleDegreeMix;
     private ButtonGroup buttonGroupNumberOfNotes;
+    private ButtonGroup buttonGroupNumberOfOctaves;
 
     private JRadioButton jCheckBoxALLDIATONIC;
-    private JRadioButton jCheckBoxALLDIATONICACCIDENTALS;
-    private JRadioButton jCheckBoxOneFourFive;
+    private JRadioButton jCheckBoxChromatic;
+    private JRadioButton jCheckBoxOneThreeFourFive;
 
     private JRadioButton jCheckBoxOne;
     private JRadioButton jCheckBoxTwo;
     private JRadioButton jCheckBoxThree;
     private JRadioButton jCheckBoxFour;
     private JRadioButton jCheckBoxFive;
+
+    private JRadioButton jRadioButtonOct1, jRadioButtonOct2, jRadioButtonOct3;
 
     private JButton buttonBack;
 
@@ -30,24 +33,25 @@ public class OptionsFrame extends JFrame implements ActionListener{
         setSize(new Dimension(400, 200));
         setVisible(true);
         setResizable(false);
-        setLayout(new GridLayout(2, 1));
+        setLayout(new GridLayout(3, 1));
 
         buttonGroupScaleDegreeMix = new ButtonGroup();
         buttonGroupNumberOfNotes = new ButtonGroup();
+        buttonGroupNumberOfOctaves = new ButtonGroup();
 
 
         // init ScaleDegreeMix JRadioButton
         jCheckBoxALLDIATONIC = new JRadioButton("Diatonic");
-        jCheckBoxALLDIATONICACCIDENTALS = new JRadioButton("DiatonicAccidentals");
-        jCheckBoxOneFourFive = new JRadioButton("OneFourFive");
+        jCheckBoxChromatic = new JRadioButton("Chromatic");
+        jCheckBoxOneThreeFourFive = new JRadioButton("One,Three,Four,Five");
 
         buttonGroupScaleDegreeMix.add(jCheckBoxALLDIATONIC);
-        buttonGroupScaleDegreeMix.add(jCheckBoxALLDIATONICACCIDENTALS);
-        buttonGroupScaleDegreeMix.add(jCheckBoxOneFourFive);
+        buttonGroupScaleDegreeMix.add(jCheckBoxChromatic);
+        buttonGroupScaleDegreeMix.add(jCheckBoxOneThreeFourFive);
 
-        jCheckBoxOneFourFive.addActionListener(this);
+        jCheckBoxOneThreeFourFive.addActionListener(this);
         jCheckBoxALLDIATONIC.addActionListener(this);
-        jCheckBoxALLDIATONICACCIDENTALS.addActionListener(this);
+        jCheckBoxChromatic.addActionListener(this);
 
         // init NumberOfNotes Option JRadioButton
         jCheckBoxOne = new JRadioButton("1");
@@ -72,25 +76,26 @@ public class OptionsFrame extends JFrame implements ActionListener{
         buttonBack.setPreferredSize(new Dimension(40, 20));
         buttonBack.addActionListener(this);
 
-        /*add(jCheckBoxOneFourFive);
-        add(jCheckBoxALLDIATONIC);
-        add(jCheckBoxALLDIATONICACCIDENTALS);
+        jRadioButtonOct1 = new JRadioButton("1");
+        jRadioButtonOct2 = new JRadioButton("2");
+        jRadioButtonOct3 = new JRadioButton("3");
 
-        add(jCheckBoxOne);
-        add(jCheckBoxTwo);
-        add(jCheckBoxThree);
-        add(jCheckBoxFour);
-        add(jCheckBoxFive);*/
+        jRadioButtonOct1.addActionListener(this);
+        jRadioButtonOct2.addActionListener(this);
+        jRadioButtonOct3.addActionListener(this);
 
+        buttonGroupNumberOfOctaves.add(jRadioButtonOct1);
+        buttonGroupNumberOfOctaves.add(jRadioButtonOct2);
+        buttonGroupNumberOfOctaves.add(jRadioButtonOct3);
 
         JPanel panelScaleDegreeMix = new JPanel();
 
         panelScaleDegreeMix.setPreferredSize(new Dimension(350, 150));
         panelScaleDegreeMix.setLayout(new GridLayout(5, 1));
         panelScaleDegreeMix.add(new JLabel("Select the Scale Degree which should be played"));
-        panelScaleDegreeMix.add(jCheckBoxOneFourFive);
+        panelScaleDegreeMix.add(jCheckBoxOneThreeFourFive);
         panelScaleDegreeMix.add(jCheckBoxALLDIATONIC);
-        panelScaleDegreeMix.add(jCheckBoxALLDIATONICACCIDENTALS);
+        panelScaleDegreeMix.add(jCheckBoxChromatic);
         panelScaleDegreeMix.add(buttonBack);
 
 
@@ -105,7 +110,17 @@ public class OptionsFrame extends JFrame implements ActionListener{
         panelNumberOfNotes.add(jCheckBoxFour);
         panelNumberOfNotes.add(jCheckBoxFive);
 
+        JPanel panelNumberOfOctaves = new JPanel();
+
+        panelNumberOfOctaves.setPreferredSize(new Dimension(350, 150));
+        panelNumberOfOctaves.setLayout(new GridLayout(4,1));
+        panelNumberOfOctaves.add(new JLabel("Range of used octaves: "));
+        panelNumberOfOctaves.add(jRadioButtonOct1);
+        panelNumberOfOctaves.add(jRadioButtonOct2);
+        panelNumberOfOctaves.add(jRadioButtonOct3);
+
         add(panelNumberOfNotes);
+        add(panelNumberOfOctaves);
         add(panelScaleDegreeMix);
         pack();
 
@@ -135,17 +150,32 @@ public class OptionsFrame extends JFrame implements ActionListener{
         }
 
         switch(config.getScaleDegreeMix()){
-            case ONE_FOUR_FIVE:
+            case ONE_THREE_FOUR_FIVE:
                 buttonGroupScaleDegreeMix.clearSelection();
-                jCheckBoxOneFourFive.setSelected(true);
+                jCheckBoxOneThreeFourFive.setSelected(true);
                 break;
             case ALL_DIATONIC:
                 buttonGroupScaleDegreeMix.clearSelection();
                 jCheckBoxALLDIATONIC.setSelected(true);
                 break;
-            case ALL_DIATONIC_AND_ACCIDENTALS:
+            case CHROMATIC:
                 buttonGroupScaleDegreeMix.clearSelection();
-                jCheckBoxALLDIATONICACCIDENTALS.setSelected(true);
+                jCheckBoxChromatic.setSelected(true);
+                break;
+        }
+
+        switch(config.getNumberOfOctaves()){
+            case ONE_OCTAVE:
+                buttonGroupNumberOfOctaves.clearSelection();
+                jRadioButtonOct1.setSelected(true);
+                break;
+            case TWO_OCTAVES:
+                buttonGroupNumberOfOctaves.clearSelection();
+                jRadioButtonOct2.setSelected(true);
+                break;
+            case THREE_OCTAVES:
+                buttonGroupNumberOfOctaves.clearSelection();
+                jRadioButtonOct3.setSelected(true);
                 break;
         }
     }
@@ -153,16 +183,17 @@ public class OptionsFrame extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         Config.NumberOfNotes number = null;
-        ScaleDegreeMix scaleMix = null;
+        Config.ScaleDegreeMix scaleMix = null;
+        Config.NumberOfOctaves numberOfOctaves = null;
 
-        if (actionEvent.getSource() == jCheckBoxOneFourFive) {
-            scaleMix = ScaleDegreeMix.ONE_FOUR_FIVE;
+        if (actionEvent.getSource() == jCheckBoxOneThreeFourFive) {
+            scaleMix = ScaleDegreeMix.ONE_THREE_FOUR_FIVE;
         }
         if (actionEvent.getSource() == jCheckBoxALLDIATONIC) {
             scaleMix = ScaleDegreeMix.ALL_DIATONIC;
         }
-        if (actionEvent.getSource() == jCheckBoxALLDIATONICACCIDENTALS) {
-            scaleMix = ScaleDegreeMix.ALL_DIATONIC_AND_ACCIDENTALS;
+        if (actionEvent.getSource() == jCheckBoxChromatic) {
+            scaleMix = ScaleDegreeMix.CHROMATIC;
         }
 
 
@@ -182,12 +213,26 @@ public class OptionsFrame extends JFrame implements ActionListener{
             number = Config.NumberOfNotes.FIVE;
         }
 
+        if(actionEvent.getSource() == jRadioButtonOct1){
+            numberOfOctaves = Config.NumberOfOctaves.ONE_OCTAVE;
+        }
+        if(actionEvent.getSource() == jRadioButtonOct2){
+            numberOfOctaves = Config.NumberOfOctaves.TWO_OCTAVES;
+        }
+        if(actionEvent.getSource() == jRadioButtonOct3){
+            numberOfOctaves = Config.NumberOfOctaves.THREE_OCTAVES;
+        }
+
         if(number != null) {
             Config.getInstance().setNumberOfNotes(number);
         }
 
         if(scaleMix != null){
             Config.getInstance().setScaleDegreeMix(scaleMix);
+        }
+
+        if(numberOfOctaves != null){
+            Config.getInstance().setNumberOfOctaves(numberOfOctaves);
         }
 
         if(actionEvent.getSource() == buttonBack){

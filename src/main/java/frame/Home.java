@@ -9,13 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Home extends JFrame {
-    private Config config;
     private JButton btnPlay;
     private JButton btnOptions;
     private JPanel panCenter;
     private JPanel panCenterFlow;
-    private OptionsFrame optionsFrame;
-    private QuizFrame quizFrame;
 
     public Home(){
 
@@ -43,8 +40,6 @@ public class Home extends JFrame {
         panCenterFlow.add(btnOptions);
 
         panCenter.setPreferredSize(new Dimension(200, 300));
-
-        config = Config.getInstance();
     }
 
     private void initButtons() {
@@ -69,12 +64,12 @@ public class Home extends JFrame {
                 // open Game
                 System.out.println("Starting Game");
                 dispose();
-                quizFrame = new QuizFrame();
+                new QuizFrame();
             } else if (source == btnOptions){
                 // open Options
                 System.out.println("starting Options");
                 dispose();
-                optionsFrame = new OptionsFrame();
+                new OptionsFrame();
             }
         }
     }

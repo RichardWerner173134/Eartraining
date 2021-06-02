@@ -1,12 +1,15 @@
 package components;
 
 
+import components.notepicker.ChromaticNotePicker;
+import components.notepicker.DiatonicNotePicker;
+import components.notepicker.INotePicker;
+import components.notepicker.OneThreeFourFiveNotePicker;
 import lombok.Getter;
 import org.jfugue.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Getter
 public class SoundManager {
@@ -49,24 +52,29 @@ public class SoundManager {
         Thread t2 = new Thread(() -> player.play(sb.toString()));
         t2.start();
 
-        //Thread t = new Thread(() -> player.play("V0 CQQQQ V1 EbQQQQ V2 GQQQQ"));
-        //Thread t3 = new Thread(() -> player.play("V0 CQQQQ V1 EbQQQQ V2 GQQQQ"));
-        //t.start();
-        //t3.start();
     }
 
     private List<Note> pickSound() {
         List<Note> pickedNotes = new ArrayList<>();
+        Config.ScaleDegreeMix scaleDegreeMix = config.getScaleDegreeMix();
 
-        Random rand = new Random();
 
-        for(int i = 0; i < config.getIntNumberOfNotes(); i++){
+        for(int i = 0; i < config.getNumberOfNotes().getValue(); i++){
+            INotePicker notePicker = null;
             Note newRandomNote = null;
-            try {
-                newRandomNote = getNote(rand.nextInt(7) + 1, rand.nextInt(2), rand.nextInt(3) + 3);
-            } catch (Exception e) {
-                e.printStackTrace();
+            switch(scaleDegreeMix){
+                case ONE_THREE_FOUR_FIVE:
+                    notePicker = new OneThreeFourFiveNotePicker();
+                    break;
+                case ALL_DIATONIC:
+                    notePicker = new DiatonicNotePicker();
+                    break;
+                case CHROMATIC:
+                    notePicker = new ChromaticNotePicker();
+                    break;
             }
+
+            newRandomNote = notePicker.pickNote();
 
             if(!pickedNotes.contains(newRandomNote)) {
                 // count accidentals in pickedNotes
@@ -97,7 +105,7 @@ public class SoundManager {
         playCurrentSound();
     }
 
-    private Note getNote(int scaleDegree, int accidental, int octave) throws Exception {
+    public static Note getNote(int scaleDegree, int accidental, int octave) throws Exception {
         char n;
         if(scaleDegree == 1 || scaleDegree == 5){
             n = 'n';

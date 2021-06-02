@@ -6,10 +6,12 @@ public class Config {
 
     private NumberOfNotes numberOfNotes;
     private ScaleDegreeMix scaleDegreeMix;
+    private NumberOfOctaves numberOfOctaves;
 
     private Config(){
-        numberOfNotes = NumberOfNotes.THREE;
-        scaleDegreeMix = ScaleDegreeMix.ONE_FOUR_FIVE;
+        numberOfNotes = NumberOfNotes.TWO;
+        scaleDegreeMix = ScaleDegreeMix.ONE_THREE_FOUR_FIVE;
+        numberOfOctaves = NumberOfOctaves.ONE_OCTAVE;
     }
 
     public static Config getInstance(){
@@ -17,6 +19,10 @@ public class Config {
             config = new Config();
         }
         return config;
+    }
+
+    public void setNumberOfOctaves(NumberOfOctaves number){
+        this.numberOfOctaves = number;
     }
 
     public void setNumberOfNotes(NumberOfNotes number){
@@ -35,10 +41,23 @@ public class Config {
         return numberOfNotes;
     }
 
-    public int getIntNumberOfNotes(){
-        return this.numberOfNotes.getNumberOfNotes();
+    public NumberOfOctaves getNumberOfOctaves(){
+        return numberOfOctaves;
     }
 
+    public int[] getOctaveNumberIntervall(){
+        switch (numberOfOctaves) {
+            case ONE_OCTAVE:
+                return new int[]{4};
+            case TWO_OCTAVES:
+                return new int[]{4, 5};
+            case THREE_OCTAVES:
+                return new int[]{3, 4, 5};
+        }
+        throw new NullPointerException("config not initialized");
+    }
+
+    // enums
     public enum NumberOfNotes{
 
         ONE(1),
@@ -57,14 +76,36 @@ public class Config {
             return String.valueOf(this.numberOfNotes);
         }
 
-        public int getNumberOfNotes(){
+        public int getValue(){
             return numberOfNotes;
         }
     }
 
     public enum ScaleDegreeMix{
-        ONE_FOUR_FIVE(),
+        ONE_THREE_FOUR_FIVE(),
         ALL_DIATONIC(),
-        ALL_DIATONIC_AND_ACCIDENTALS();
+        CHROMATIC();
+    }
+
+    public enum NumberOfOctaves{
+        ONE_OCTAVE(1),
+        TWO_OCTAVES(2),
+        THREE_OCTAVES(3);
+
+        private int numberOfOctaves;
+
+        NumberOfOctaves(int numberOfOctaves){
+            this.numberOfOctaves = numberOfOctaves;
+        }
+
+        public int getNumberOfOctaves(){
+            return this.numberOfOctaves;
+        }
     }
 }
+
+/*
+1 = {4}
+2 = {4, 5}
+3 = {3, 4, 5}
+ */

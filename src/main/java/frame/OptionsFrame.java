@@ -150,7 +150,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
         }
 
         switch(config.getScaleDegreeMix()){
-            case ONE_THREE_FOUR_FIVE:
+            case ONE_TWO_THREE_FOUR_FIVE:
                 buttonGroupScaleDegreeMix.clearSelection();
                 jCheckBoxOneThreeFourFive.setSelected(true);
                 break;
@@ -187,7 +187,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
         Config.NumberOfOctaves numberOfOctaves = null;
 
         if (actionEvent.getSource() == jCheckBoxOneThreeFourFive) {
-            scaleMix = ScaleDegreeMix.ONE_THREE_FOUR_FIVE;
+            scaleMix = ScaleDegreeMix.ONE_TWO_THREE_FOUR_FIVE;
         }
         if (actionEvent.getSource() == jCheckBoxALLDIATONIC) {
             scaleMix = ScaleDegreeMix.ALL_DIATONIC;
@@ -209,7 +209,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
         if(actionEvent.getSource() == jCheckBoxFour){
             number = Config.NumberOfNotes.FOUR;
         }
-        if(actionEvent.getSource() == jCheckBoxFive){
+        if(actionEvent.getSource() == jCheckBoxFive) {
             number = Config.NumberOfNotes.FIVE;
         }
 

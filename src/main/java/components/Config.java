@@ -10,7 +10,7 @@ public class Config {
 
     private Config(){
         numberOfNotes = NumberOfNotes.TWO;
-        scaleDegreeMix = ScaleDegreeMix.ONE_THREE_FOUR_FIVE;
+        scaleDegreeMix = ScaleDegreeMix.ONE_TWO_THREE_FOUR_FIVE;
         numberOfOctaves = NumberOfOctaves.ONE_OCTAVE;
     }
 
@@ -43,6 +43,10 @@ public class Config {
 
     public NumberOfOctaves getNumberOfOctaves(){
         return numberOfOctaves;
+    }
+
+    public int getMaxNotesLowerRegister(){
+        return numberOfOctaves.getMaxNumberOfNotesLowerOctave();
     }
 
     public int[] getOctaveNumberIntervall(){
@@ -82,30 +86,30 @@ public class Config {
     }
 
     public enum ScaleDegreeMix{
-        ONE_THREE_FOUR_FIVE(),
+        ONE_TWO_THREE_FOUR_FIVE(),
         ALL_DIATONIC(),
         CHROMATIC();
     }
 
     public enum NumberOfOctaves{
-        ONE_OCTAVE(1),
-        TWO_OCTAVES(2),
-        THREE_OCTAVES(3);
+        ONE_OCTAVE(1, 5),
+        TWO_OCTAVES(2, 5),
+        THREE_OCTAVES(3, 2);
 
         private int numberOfOctaves;
+        private int maxNumberOfNotesLowerOctave;
 
-        NumberOfOctaves(int numberOfOctaves){
+        NumberOfOctaves(int numberOfOctaves, int maxNumberOfNotesLowerOctave){
             this.numberOfOctaves = numberOfOctaves;
+            this.maxNumberOfNotesLowerOctave = maxNumberOfNotesLowerOctave;
         }
 
         public int getNumberOfOctaves(){
             return this.numberOfOctaves;
         }
+
+        public int getMaxNumberOfNotesLowerOctave(){
+            return this.maxNumberOfNotesLowerOctave;
+        }
     }
 }
-
-/*
-1 = {4}
-2 = {4, 5}
-3 = {3, 4, 5}
- */

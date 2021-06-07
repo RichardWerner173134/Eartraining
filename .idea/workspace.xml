@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfac4d4f-067e-4c78-a3d6-9b61bd2d85ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/ChromaticNotePicker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/DiatonicNotePicker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/INotePicker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/OneThreeFourFiveNotePicker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/components/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frame/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/components/notepicker/OneThreeFourFiveNotePicker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/OneTwoThreeFourFiveNotePicker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/components/Config$NumberOfNotes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$NumberOfNotes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$NumberOfOctaves.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$NumberOfOctaves.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/components/Config$ScaleDegreeMix.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$ScaleDegreeMix.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/components/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/SoundManager$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/SoundManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/Home$BtnActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/Home$BtnActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/Home.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/components/notepicker/OneThreeFourFiveNotePicker.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/frame/OptionsFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/OptionsFrame$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/frame/OptionsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/OptionsFrame.class" afterDir="false" />
     </list>
@@ -124,34 +121,9 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/components/Note.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/components/SoundManager.java</url>
-          <line>78</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java</url>
-          <line>216</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java</url>
-          <line>219</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java</url>
-          <line>222</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/components/notepicker/OneThreeFourFiveNotePicker.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="26" />
+          <line>189</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

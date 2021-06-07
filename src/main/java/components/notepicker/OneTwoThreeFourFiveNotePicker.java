@@ -6,13 +6,13 @@ import components.SoundManager;
 
 import java.util.Random;
 
-public class OneThreeFourFiveNotePicker implements INotePicker {
+public class OneTwoThreeFourFiveNotePicker implements INotePicker {
     private int[] scaleDegrees;
     private int[] octaveDescription;
     private Random rand;
 
-    public OneThreeFourFiveNotePicker() {
-        scaleDegrees = new int[]{1,3,4,5};
+    public OneTwoThreeFourFiveNotePicker() {
+        scaleDegrees = new int[]{1,2,3,4,5};
         octaveDescription = Config.getInstance().getOctaveNumberIntervall();
         rand = new Random();
     }
@@ -21,7 +21,7 @@ public class OneThreeFourFiveNotePicker implements INotePicker {
     public Note pickNote() {
         Note newRandomNote = null;
 
-        // picking a random scaleDegree of 1, 3, 4, 5
+        // picking a random scaleDegree of 1, 2, 3, 4, 5
         int pickedScaleDegree = scaleDegrees[rand.nextInt(scaleDegrees.length)];
 
         // pick an accidental or not

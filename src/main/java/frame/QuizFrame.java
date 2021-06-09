@@ -2,6 +2,7 @@ package frame;
 
 
 import components.Answer;
+import components.QuestionChecker;
 import components.Sound;
 import components.SoundManager;
 
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class QuizFrame extends JFrame implements ActionListener {
     private JPanel panelButtons;
@@ -32,10 +34,11 @@ public class QuizFrame extends JFrame implements ActionListener {
     private JButton btnFLATSEVEN;
     private JPanel panelBack;
     private JButton btnBack;
-    private SoundManager sm;
     private JPanel panelAnswerDisplay;
     private JLabel labelNoteCount;
     private JLabel labelAnswer;
+    private SoundManager sm;
+
 
     public QuizFrame() {
 
@@ -64,7 +67,7 @@ public class QuizFrame extends JFrame implements ActionListener {
         btnCadence.setSize(80, 30);
         btnCadence.setVisible(true);
 
-        btnShowAnswer = new JButton("Show Answer");
+        btnShowAnswer = new JButton("Next Tune");
         btnShowAnswer.setSize(80, 30);
         btnShowAnswer.setVisible(true);
 
@@ -182,38 +185,71 @@ public class QuizFrame extends JFrame implements ActionListener {
             sm.playCadence();
         } else if (btnShowAnswer.equals(source)) {
             sm.playNewSound();
-        } /*else if (btnONE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.ONE);
+        } else if (btnONE.equals(source)) {
+            isAdded = answer.addAnswer(new Sound(1, 'n'));
         } else if (btnTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.TWO);
+            isAdded = answer.addAnswer(new Sound(2, 'n'));
         } else if (btnTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.THREE);
+            isAdded = answer.addAnswer(new Sound(3, 'n'));
         } else if (btnFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FOUR);
+            isAdded = answer.addAnswer(new Sound(4, 'n'));
         } else if (btnFIVE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FIVE);
+            isAdded = answer.addAnswer(new Sound(5, 'n'));
         } else if (btnSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SIX);
+            isAdded = answer.addAnswer(new Sound(6, 'n'));
         } else if (btnSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SEVEN);
+            isAdded = answer.addAnswer(new Sound(7, 'n'));
         } else if (btnFLATTWO.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_TWO);
+            isAdded = answer.addAnswer(new Sound(2, 'b'));
         } else if (btnFLATTHREE.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_THREE);
+            isAdded = answer.addAnswer(new Sound(3, 'b'));
         } else if (btnSHARPFOUR.equals(source)) {
-            isAdded = answer.addAnswer(Sound.SHARP_FOUR);
+            isAdded = answer.addAnswer(new Sound(4, '#'));
         } else if (btnFLATSIX.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SIX);
+            isAdded = answer.addAnswer(new Sound(6, 'b'));
         } else if (btnFLATSEVEN.equals(source)) {
-            isAdded = answer.addAnswer(Sound.FLAT_SEVEN);
-        }*/
-        else if (btnBack.equals(source)) {
+            isAdded = answer.addAnswer(new Sound(7, 'b'));
+        } else if (btnBack.equals(source)) {
             new Home();
             dispose();
         }
 
         if(isAdded){
             labelAnswer.setText(labelAnswer.getText() + ((JButton)actionEvent.getSource()).getText() + ", ");
+
+            if(answer.getSounds().size() == sm.getNotes().size()){
+                List<QuestionChecker.CorrectedValue> correctedValues = QuestionChecker.checkQuestion(sm.getNotes(), answer);
+                correctionOutput(correctedValues);
+                Answer.resetAnswer();
+                labelAnswer.setText("");
+            }
         }
+    }
+
+    private void correctionOutput(List<QuestionChecker.CorrectedValue> correctedValues) {
+        StringBuilder sb = new StringBuilder();
+        correctedValues
+                .forEach(correctedValue -> {
+                    String isCorrect = correctedValue.isCorrect() ? "correct" : "wrong";
+                    String acc = correctedValue.getAnswerSound().getAccidental() == 'n' ? "" :
+                            correctedValue.getAnswerSound().getAccidental() == 'b' ? "b" : "#";
+                    String cMajSound = getScaleDegreeRoman(correctedValue);
+
+                    sb.append(cMajSound)
+                            .append(acc)
+                            .append(" ----------- ")
+                            .append(isCorrect)
+                            .append("\n");
+                });
+        JOptionPane.showMessageDialog(null, sb.toString());
+    }
+
+    private String getScaleDegreeRoman(QuestionChecker.CorrectedValue correctedValue) {
+        return correctedValue.getAnswerSound().getScaleDegree() == 1 ? "I" :
+                correctedValue.getAnswerSound().getScaleDegree() == 2 ? "II" :
+                        correctedValue.getAnswerSound().getScaleDegree() == 3 ? "III" :
+                                correctedValue.getAnswerSound().getScaleDegree() == 4 ? "IV" :
+                                        correctedValue.getAnswerSound().getScaleDegree() == 5 ? "V" :
+                                                correctedValue.getAnswerSound().getScaleDegree() == 6 ? "VI" : "VII";
     }
 }

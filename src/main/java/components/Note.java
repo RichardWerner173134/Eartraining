@@ -3,7 +3,6 @@ package components;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.image.PackedColorModel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,4 +100,13 @@ public class Note {
 
         return "" + scaleDegree + accidental + octave;
     }
+
+    public static List<Sound> getSoundWithoutOctave(List<Note> notes){
+        List<Sound> sounds = new ArrayList<>();
+        for(Note note : notes){
+            sounds.add(note.getSound());
+        }
+        return sounds;
+    }
+
 }

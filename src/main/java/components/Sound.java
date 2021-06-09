@@ -19,4 +19,8 @@ public class Sound {
     }
 
 
+    @Override
+    public boolean equals(Object obj) {
+        return scaleDegree == ((Sound)obj).getScaleDegree() && accidental == ((Sound)obj).getAccidental();
+    }
 }

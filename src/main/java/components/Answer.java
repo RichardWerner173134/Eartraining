@@ -25,7 +25,7 @@ public class Answer {
     }
 
     public static void resetAnswer(){
-        answer = null;
+        answer.setSounds(new ArrayList<>());
     }
 
     /**
@@ -35,18 +35,8 @@ public class Answer {
      * @return false if it doesnt add a new answer
      */
     public boolean addAnswer(Sound sound){
-        boolean isPresent = false;
-        for(Sound s : sounds){
-            if(s.getAccidental() == sound.getAccidental() && s.getScaleDegree() == sound.getScaleDegree()){
-                isPresent = true;
-            }
-        }
-
-        if(!isPresent){
-            sounds.add(sound);
-            return true;
-        }
-        return false;
+        sounds.add(sound);
+        return true;
     }
 
 }

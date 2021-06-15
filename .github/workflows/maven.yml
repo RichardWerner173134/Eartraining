@@ -22,6 +22,6 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Install JFugue
-      run: mvn install:install-file -Dfile=./src/main/resources/jfugue-4.0.3.jar -DgroupId=jfugue -DartifactId=jfugue -Dversion=4.0.3 -Dpackaging=jar
+      run: mvn install:install-file -Dfile=./lib/jfugue/jfugue-4.0.3.jar -DgroupId=jfugue -DartifactId=jfugue -Dversion=4.0.3 -Dpackaging=jar package
     - name: Build with Maven
       run: mvn clean package

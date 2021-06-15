@@ -6,8 +6,7 @@ import components.notepicker.DiatonicNotePicker;
 import components.notepicker.INotePicker;
 import components.notepicker.OneTwoThreeFourFiveNotePicker;
 import lombok.Getter;
-import org.jfugue.player.Player;
-
+import org.jfugue.Player;
 import java.util.ArrayList;
 import java.util.List;
 

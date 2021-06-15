@@ -34,6 +34,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
         setVisible(true);
         setResizable(false);
         setLayout(new GridLayout(3, 1));
+        setResizable(false);
 
         buttonGroupScaleDegreeMix = new ButtonGroup();
         buttonGroupNumberOfNotes = new ButtonGroup();

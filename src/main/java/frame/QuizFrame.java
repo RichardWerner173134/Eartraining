@@ -51,6 +51,7 @@ public class QuizFrame extends JFrame implements ActionListener {
         setSize(new Dimension(800, 600));
         setVisible(true);
         setLayout(new GridLayout(4, 1));
+        setResizable(false);
 
         // first row, contains navigation buttons
         panelButtons = new JPanel();
@@ -249,9 +250,6 @@ public class QuizFrame extends JFrame implements ActionListener {
                 Answer.resetAnswer();
                 labelAnswer.setText("");
                 correctionOutput(correctedValues);
-                //if(correctedValues.stream().allMatch(CorrectedValue::isCorrect)){
-                  //  sm.playNewSound();
-                //}
             }
         }
     }
@@ -292,7 +290,20 @@ public class QuizFrame extends JFrame implements ActionListener {
                     }
                 });
 
-        JOptionPane.showMessageDialog(null, sb.toString());
+        Object stringArray[] = {"Next", "Listen again"};
+        int checking_answer = JOptionPane.showOptionDialog(this,
+                sb.toString(),
+                "Checking Answer",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                stringArray,
+                stringArray[0]
+        );
+
+        if (checking_answer == 0){
+            sm.playNewSound();
+        }
     }
 
 

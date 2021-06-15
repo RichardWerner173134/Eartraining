@@ -1,7 +1,0 @@
-Main.class
-components\SoundManager$SoundConfig.class
-components\Sound.class
-components\SoundManager.class
-components\SoundManager$SoundConfig$NumberOfNotes.class
-components\SoundManager$SoundConfig$ScaleDegreeMix.class
-frame\Game.class

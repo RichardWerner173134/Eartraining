@@ -30,15 +30,13 @@ public class SoundManager {
     public void playCurrentSound() {
         Player player = new Player();
         StringBuilder sb = new StringBuilder();
+        StringBuilder sbSeparated = new StringBuilder();
         StringBuilder logSb = new StringBuilder();
 
         int i = 0;
-        int octaveDebugCount = 0;
         for(Note note : notes){
+            sbSeparated.append(note.getSoundString()).append("QQ ");
             try {
-                if(note.getOctave() == 3){
-                    octaveDebugCount++;
-                }
                 logSb.append(note.getSoundString()).append(", ");
                 sb.append("V")
                         .append(i)
@@ -51,7 +49,6 @@ public class SoundManager {
             }
             i++;
         }
-        System.out.println("WORKING: " + octaveDebugCount);
 
         System.out.println("playing: " + logSb.toString());
         Thread t2 = new Thread(() -> player.play(sb.toString()));
@@ -104,19 +101,16 @@ public class SoundManager {
 
                 // make sure there are just maxAccidentals in pickedNotes
                 if(accidentalsFound >= maxAccidentals && newRandomNote.getSound().getAccidental() != 'n'){
-                    System.out.println("too many accidentals... note skipped");
+                    // too many accidentals... note skipped
                     continue;
                 } else if(currentLowerRegisterNotes >= maxNotesLowerRegister && newRandomNote.getOctave() == lowerRegisterOctave) {
-                    System.out.println("too many lower register notes... note skipped");
+                    // too many lower register notes... note skipped
                     continue;
                 } else {
-                    if(newRandomNote.getOctave() == 3){
-                        System.out.println("asjd");
-                    }
                     pickedNotes.add(newRandomNote);
                 }
             } else {
-                System.out.println("note already in pickedNotes... note skipped");
+                // note already in pickedNotes... note skipped
                 continue;
             }
         }

@@ -12,7 +12,7 @@ public class DiatonicNotePicker implements INotePicker {
     private Random rand;
 
     public DiatonicNotePicker(){
-        scaleDegrees = new int[]{1, 3, 4, 5, 6, 7};
+        scaleDegrees = new int[]{1, 2, 3, 4, 5, 6, 7};
         octaveDescription = Config.getInstance().getOctaveNumberIntervall();
         rand = new Random();
     }

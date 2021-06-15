@@ -138,7 +138,14 @@ public class SoundManager {
 
     public void playCadence(){
         Player player = new Player();
-        Thread t = new Thread(() -> player.play("CMajQ FMajQ GMajQ CMajQQ"));
+
+        StringBuilder s = new StringBuilder();
+        s.append("V0 C4Q C4Q D4Q E4QQ ");
+        s.append("V1 E4Q F4Q F4Q G4QQ ");
+        s.append("V2 G4Q A4Q G4Q C5QQ ");
+        s.append("V4 RQ RQ B4Q RQQ");
+
+        Thread t = new Thread(() -> player.play(s.toString()));
         t.start();
     }
 }

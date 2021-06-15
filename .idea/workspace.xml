@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dfac4d4f-067e-4c78-a3d6-9b61bd2d85ad" name="Default Changelist" comment="Multiple identical answers possible, correctionMessage">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/SoundManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/components/notepicker/DiatonicNotePicker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/components/notepicker/DiatonicNotePicker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/OptionsFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frame/QuizFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frame/QuizFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Eartraining-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Eartraining-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Eartraining.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Answer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Answer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$NumberOfNotes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$NumberOfNotes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$NumberOfOctaves.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$NumberOfOctaves.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Config$ScaleDegreeMix.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config$ScaleDegreeMix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Config.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Config.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Note.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Note.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/QuestionChecker$CorrectedValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/QuestionChecker$CorrectedValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/QuestionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/QuestionChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/Sound.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/SoundManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/SoundManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/SoundManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/notepicker/ChromaticNotePicker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/notepicker/ChromaticNotePicker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/notepicker/DiatonicNotePicker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/notepicker/DiatonicNotePicker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/notepicker/INotePicker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/notepicker/INotePicker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/components/notepicker/OneTwoThreeFourFiveNotePicker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/components/notepicker/OneTwoThreeFourFiveNotePicker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/Home$BtnActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/Home$BtnActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/Home.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/OptionsFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/OptionsFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/OptionsFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/OptionsFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/frame/QuizFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/frame/QuizFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,15 +26,21 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1tAhhLXjmEQlHWTcljfoxdR1DwZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -71,24 +49,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Richard\IntelliJ\Eartraining\src\main\resources" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rwerner\projects\Eartraining\lib\jfugue" />
+      <recent name="C:\Users\rwerner\projects\Eartraining\lib" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="components" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Richard\IntelliJ\Eartraining\src\main\resources" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -106,6 +76,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -131,7 +102,28 @@
       <option name="project" value="LOCAL" />
       <updated>1623350545164</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="jfugue Artifact added">
+      <created>1623744215145</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1623744215145</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ci jar angepasst">
+      <created>1623746696503</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1623746696503</updated>
+    </task>
+    <task id="LOCAL-00005" summary="mvn jfugue moved">
+      <created>1623748195133</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623748195133</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,18 +131,40 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Quiz Function works" />
     <MESSAGE value="Multiple identical answers possible, correctionMessage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Multiple identical answers possible, correctionMessage" />
+    <MESSAGE value="jfugue Artifact added" />
+    <MESSAGE value="ci jar angepasst" />
+    <MESSAGE value="mvn jfugue moved" />
+    <option name="LAST_COMMIT_MESSAGE" value="mvn jfugue moved" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="530" y="95" key="CommitChangelistDialog2" timestamp="1623748194165">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1216" y="215" key="CommitChangelistDialog2/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@-1680.123.1680.1010" timestamp="1623744214291" />
+    <state x="530" y="95" key="CommitChangelistDialog2/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@0.0.1920.1040" timestamp="1623748194165" />
+    <state x="130" y="74" key="DiffContextDialog" timestamp="1623746674505">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="130" y="74" key="DiffContextDialog/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@0.0.1920.1040" timestamp="1623746674505" />
+    <state x="-1360" y="202" key="SettingsEditor" timestamp="1623744030020">
+      <screen x="-1680" y="123" width="1680" height="1010" />
+    </state>
+    <state x="-1360" y="202" key="SettingsEditor/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@-1680.123.1680.1010" timestamp="1623744030020" />
+    <state x="494" y="245" key="Vcs.Push.Dialog.v2" timestamp="1623748196586">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1248" y="361" key="Vcs.Push.Dialog.v2/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@-1680.123.1680.1010" timestamp="1623744217137" />
+    <state x="494" y="245" key="Vcs.Push.Dialog.v2/-1680.123.1680.1010/0.0.1920.1040/-3600.82.1536.824@0.0.1920.1040" timestamp="1623748196586" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

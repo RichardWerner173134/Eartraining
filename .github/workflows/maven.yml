@@ -25,3 +25,8 @@ jobs:
       run: mvn install:install-file -Dfile=./lib/jfugue/jfugue-4.0.3.jar -DgroupId=jfugue -DartifactId=jfugue -Dversion=4.0.3 -Dpackaging=jar package
     - name: Build with Maven
       run: mvn clean package
+    - name: Archive Jar
+      uses: actions/upload-artifact@v2
+      with:
+        name: Jar
+        path: target/Eartraining-1.0-SNAPSHOT-jar-with-dependencies.jar

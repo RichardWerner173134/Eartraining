@@ -9,6 +9,9 @@ import lombok.Getter;
 import org.jfugue.Player;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static components.Note.isHigher;
 
 @Getter
 public class SoundManager {
@@ -29,12 +32,19 @@ public class SoundManager {
     public void playCurrentSound() {
         Player player = new Player();
         StringBuilder sb = new StringBuilder();
-        StringBuilder sbSeparated = new StringBuilder();
         StringBuilder logSb = new StringBuilder();
 
         int i = 0;
-        for(Note note : notes){
-            sbSeparated.append(note.getSoundString()).append("QQ ");
+
+        List<Note> collect = notes
+                .stream()
+                .sorted((Note n1, Note n2) -> {
+                    if (isHigher(n1, n2)) return 1;
+                    else return -1;
+                })
+                .collect(Collectors.toList());
+
+        for(Note note : collect){
             try {
                 logSb.append(note.getSoundString()).append(", ");
                 sb.append("V")
@@ -50,9 +60,8 @@ public class SoundManager {
         }
 
         System.out.println("playing: " + logSb.toString());
-        Thread t2 = new Thread(() -> player.play(sb.toString()));
-        t2.start();
-
+        Thread thread = new Thread(() -> player.play(sb.toString()));
+        thread.start();
     }
 
     private List<Note> pickSound() {
@@ -94,8 +103,6 @@ public class SoundManager {
                     if(note.getOctave() == lowerRegisterOctave){
                         currentLowerRegisterNotes++;
                     }
-
-
                 }
 
                 // make sure there are just maxAccidentals in pickedNotes
@@ -113,7 +120,6 @@ public class SoundManager {
                 continue;
             }
         }
-
         return pickedNotes;
     }
 
@@ -147,5 +153,17 @@ public class SoundManager {
 
         Thread t = new Thread(() -> player.play(s.toString()));
         t.start();
+    }
+
+    public void playSoundSeparately() {
+        Player player = new Player();
+        StringBuilder sb = new StringBuilder();
+        notes.stream().sorted((n1, n2) -> {
+            if (isHigher(n1, n2)) return 1;
+            else return -1;
+        }).forEach(note  -> sb.append(note.getSoundString()).append("Q "));
+
+        Thread thread = new Thread(() -> player.play(sb.toString()));
+        thread.start();
     }
 }

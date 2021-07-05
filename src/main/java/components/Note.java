@@ -109,4 +109,24 @@ public class Note {
         return sounds;
     }
 
+    public static boolean isHigher(Note n1, Note n2){
+        if(n1.getOctave() > n2.getOctave()) return true;
+        if(n1.getOctave() < n2.getOctave()) return false;
+        if(n1.getSound().getScaleDegree() > n2.getSound().getScaleDegree()) return true;
+        if(n1.getSound().getScaleDegree() < n2.getSound().getScaleDegree()) return false;
+        if(isHigherAccidental(n1.getSound().getAccidental(), n2.getSound().getAccidental())) return true;
+        return false;
+    }
+
+    private static boolean isHigherAccidental(char c1, char c2){
+        int flat = -1;
+        int natural = 0;
+        int sharp = 1;
+
+        int i = c1 == 'b' ? flat : c1 == 'n' ? natural : sharp;
+        int j = c2 == 'b' ? flat : c1 == 'n' ? natural : sharp;
+
+        return i >= j;
+    }
+
 }

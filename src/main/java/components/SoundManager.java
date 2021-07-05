@@ -18,11 +18,12 @@ public class SoundManager {
 
     private List<Note> notes;
     private Config config;
+    private Player player;
 
 
     public SoundManager() {
         notes = new ArrayList<>();
-
+        player = new Player();
         config = Config.getInstance();
 
         this.notes = pickSound();
@@ -30,7 +31,7 @@ public class SoundManager {
     }
 
     public void playCurrentSound() {
-        Player player = new Player();
+        player.close();
         StringBuilder sb = new StringBuilder();
         StringBuilder logSb = new StringBuilder();
 
@@ -143,7 +144,7 @@ public class SoundManager {
     }
 
     public void playCadence(){
-        Player player = new Player();
+        player.close();
 
         StringBuilder s = new StringBuilder();
         s.append("V0 C4Q C4Q D4Q E4QQ ");
@@ -156,7 +157,7 @@ public class SoundManager {
     }
 
     public void playSoundSeparately() {
-        Player player = new Player();
+        player.close();
         StringBuilder sb = new StringBuilder();
         notes.stream().sorted((n1, n2) -> {
             if (isHigher(n1, n2)) return 1;

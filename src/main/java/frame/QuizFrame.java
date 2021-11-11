@@ -4,7 +4,7 @@ package frame;
 import components.Answer;
 import components.QuestionChecker;
 import components.QuestionChecker.CorrectedValue;
-import components.Sound;
+import model.Sound;
 import components.SoundManager;
 
 import javax.swing.*;
@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class QuizFrame extends JFrame implements ActionListener {
     private JPanel panelButtons;

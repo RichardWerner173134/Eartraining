@@ -2,11 +2,11 @@ package components;
 
 import lombok.Getter;
 import lombok.Setter;
+import model.Note;
+import model.Sound;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class QuestionChecker {

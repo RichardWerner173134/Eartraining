@@ -1,7 +1,7 @@
 package components.notepicker;
 
 import components.Config;
-import components.Note;
+import model.Note;
 import components.SoundManager;
 
 import java.util.Random;

@@ -6,12 +6,13 @@ import components.notepicker.DiatonicNotePicker;
 import components.notepicker.INotePicker;
 import components.notepicker.OneTwoThreeFourFiveNotePicker;
 import lombok.Getter;
+import model.Note;
 import org.jfugue.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static components.Note.isHigher;
+import static model.Note.isHigher;
 
 @Getter
 public class SoundManager {

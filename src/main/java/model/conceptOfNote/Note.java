@@ -76,6 +76,14 @@ public enum Note {
         );
     }
 
+    public static int noteToInt(Note note){
+        int pos = note.getLetter().getPos() + note.getAccidental().getDisplacement();
+        if(pos < 0){
+            pos = 12 + pos;
+        }
+        return pos % 12;
+    }
+
     public static boolean isEnharmonic(Note n1, Note n2){
         int pos1 = n1.getLetter().getPos();
         int pos2 = n2.getLetter().getPos();
@@ -83,5 +91,10 @@ public enum Note {
         pos2 += n2.getAccidental().getDisplacement();
 
         return pos1 % 12 == pos2 % 12;
+    }
+
+    public static boolean areEqual(Note n1, Note n2){
+        return n1.getLetter() == n2.getLetter() &&
+                n1.getAccidental() == n2.getAccidental();
     }
 }

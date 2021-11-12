@@ -4,7 +4,7 @@ package frame;
 import components.Answer;
 import components.QuestionChecker;
 import components.QuestionChecker.CorrectedValue;
-import model.Sound;
+import model.oldStuff.Sound;
 import components.SoundManager;
 
 import javax.swing.*;

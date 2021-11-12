@@ -1,4 +1,4 @@
-package model;
+package model.oldStuff;
 
 public class Sound {
 

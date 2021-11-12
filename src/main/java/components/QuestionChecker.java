@@ -2,8 +2,8 @@ package components;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.Note;
-import model.Sound;
+import model.oldStuff.Note;
+import model.oldStuff.Sound;
 
 import java.util.*;
 import java.util.Map.Entry;

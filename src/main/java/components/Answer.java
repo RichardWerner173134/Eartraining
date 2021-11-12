@@ -2,7 +2,7 @@ package components;
 
 import lombok.Getter;
 import lombok.Setter;
-import model.Sound;
+import model.oldStuff.Sound;
 
 import java.util.ArrayList;
 import java.util.List;

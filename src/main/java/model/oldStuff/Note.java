@@ -1,4 +1,4 @@
-package model;
+package model.oldStuff;
 
 import lombok.Getter;
 import lombok.Setter;

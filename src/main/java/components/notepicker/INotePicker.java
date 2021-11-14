@@ -1,6 +1,6 @@
 package components.notepicker;
 
-import components.Note;
+import model.oldStuff.Note;
 
 public interface INotePicker {
     Note pickNote();

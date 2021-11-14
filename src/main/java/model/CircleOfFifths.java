@@ -1,17 +1,18 @@
 package model;
 
-import components.CircularLinkedListNode;
+import lombok.Getter;
 import model.conceptOfIntervals.Interval;
 import model.conceptOfIntervals.NoteHolder;
 import model.conceptOfNote.Note;
 
 import java.util.Iterator;
 
-public class CircleOfFifths implements Iterable<Note>{
+@Getter
+public class CircleOfFifths implements Iterator {
+    private static CircleOfFifths circleOfFifths; // singleton
 
-    private CircularLinkedListNode<NoteHolder> note;
-
-    private static CircleOfFifths circleOfFifths;
+    private CircularLinkedListNode<NoteHolder> note; // linkedList
+    private Direction iteratingDirection;
 
     private CircleOfFifths(){
         initializeCircleOfFifth();
@@ -25,50 +26,74 @@ public class CircleOfFifths implements Iterable<Note>{
     }
 
     private void initializeCircleOfFifth() {
-        note = new CircularLinkedListNode<>(new NoteHolder(Note.C), null, null);
+        iteratingDirection = Direction.UP;
+
+        note = new CircularLinkedListNode<>(new NoteHolder(Note.C, Direction.UP), null, null);
 
         // calculate CircleOfFifths in Fifths up
-        jumpInterval(Direction.UP);
+        produceFifthInterval(Direction.UP);
 
-        // remember last note
-        CircularLinkedListNode<Note> lastUpwards = note;
+        // remember last note going up in fifths
+        CircularLinkedListNode<NoteHolder> lastUp = note;
 
         // go back to C
-        while(!Note.areEqual((Note) note.getPrevious().getValue(), Note.C)){
-            note = note.getPrevious();
+        while(!Note.areEqual(this.note.getValue().getNote(Direction.UP), Note.C)){
+            this.note = this.note.getPrevious();
         }
 
         // calculate CircleOfFifths in Fifths down
-        jumpInterval(Direction.DOWN);
+        produceFifthInterval(Direction.DOWN);
 
+        // remember last note going gown in fifths
+        CircularLinkedListNode<NoteHolder> lastDown = note;
 
-
+        // merge notes and link it with its neightbours to a circle
+        mergeNodesToOne(lastUp, lastDown);
     }
 
-    private void jumpInterval(Direction direction){
+    public void printCircle() {
+        CircularLinkedListNode last = note;
+        do {
+            System.out.println(note.getValue().toString());
+            this.note = note.getNext();
+        } while(note != last);
+    }
+
+    private void mergeNodesToOne(CircularLinkedListNode<NoteHolder> lastUp, CircularLinkedListNode<NoteHolder> lastDown) {
+        CircularLinkedListNode dFlat = lastDown.getNext();
+        dFlat.setPrevious(lastUp);
+        lastUp.getValue().setNote(lastDown.getValue().getNote(Direction.DOWN), Direction.DOWN);
+        lastUp.setNext(dFlat);
+        note = lastUp;
+    }
+
+    private void produceFifthInterval(Direction direction){
         Interval interval = direction == Direction.UP ? Interval.PERFECT_FIFTH : Interval.PERFECT_FOURTH;
         boolean firstRun = true;
 
         while(true){
+            // stop at the middle
             if(!firstRun &&
-                    (Note.isEnharmonic(note.getValue(), Note.F_SHARP) || Note.isEnharmonic(note.getValue(), Note.G_FLAT))){
+                    (Note.isEnharmonic(note.getValue().getNote(Direction.UP), Note.F_SHARP)
+                            || Note.isEnharmonic(note.getValue().getNote(Direction.DOWN), Note.G_FLAT))){
                 break;
             }
             firstRun = false;
 
             Note newNote = null;
             try {
-                newNote = Interval.getNoteFromNoteAndInterval(note.getValue(), interval);
+                newNote = Interval.getNoteFromNoteAndInterval(note.getValue().getNote(Direction.UP), interval);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+            // produce new Nodes holding a Note
             if(direction == Direction.UP) {
-                CircularLinkedListNode<Note> fifthUp = new CircularLinkedListNode<>(newNote, null, note);
+                CircularLinkedListNode<NoteHolder> fifthUp = new CircularLinkedListNode<>(new NoteHolder(newNote, Direction.UP), null, note);
                 note.setNext(fifthUp);
                 note = note.getNext();
             } else {
-                CircularLinkedListNode<Note> fifthDown = new CircularLinkedListNode<>(newNote, note, null);
+                CircularLinkedListNode<NoteHolder> fifthDown = new CircularLinkedListNode<>(new NoteHolder(newNote, Direction.DOWN), note, null);
                 note.setPrevious(fifthDown);
                 note = note.getPrevious();
             }
@@ -76,15 +101,37 @@ public class CircleOfFifths implements Iterable<Note>{
     }
 
     @Override
-    public Iterator<Note> iterator() {
-
-
-
-
-        return null;
+    public boolean hasNext() {
+        return true;
     }
 
-    enum Direction{
+    @Override
+    public Object next() {
+        if(iteratingDirection == Direction.UP){
+            note = note.getNext();
+        } else {
+            note = note.getPrevious();
+        }
+        return note;
+    }
+
+    public void resetIterator(){
+        if(iteratingDirection == Direction.UP){
+            while(note.getValue().getNote(Direction.UP) != Note.F){
+                note = note.getNext();
+            }
+        } else {
+            while(note.getValue().getNote(Direction.DOWN) != Note.G){
+                note = note.getNext();
+            }
+        }
+    }
+
+    public void setIteratingDirection(Direction iteratingDirection) {
+        this.iteratingDirection = iteratingDirection;
+    }
+
+    public enum Direction{
         UP,
         DOWN;
     }

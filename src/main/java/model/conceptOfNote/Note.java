@@ -97,4 +97,9 @@ public enum Note {
         return n1.getLetter() == n2.getLetter() &&
                 n1.getAccidental() == n2.getAccidental();
     }
+
+    @Override
+    public String toString() {
+        return letter.getLetter() + (accidental.getAccidental() != null ? accidental.getAccidental() : "");
+    }
 }

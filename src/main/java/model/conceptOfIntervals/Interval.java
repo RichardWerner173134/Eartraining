@@ -51,7 +51,7 @@ public enum Interval {
 
         NoteLetter targetNoteLetter = null;
         Iterator<NoteLetter> iterator = NoteLetter.getOrderedNoteLettersBeginningFromNoteLetter(startNote.getLetter()).iterator();
-        iterator.next(); // discard the first NoteLetter (its the same as startNote.getNote().getLetter()
+        targetNoteLetter = iterator.next(); // discard the first NoteLetter (its the same as startNote.getNote().getLetter()
         for(int i = 0; i < interval.getNumberOfLetterSteps(); i++){
             if(iterator.hasNext()){
                 targetNoteLetter = iterator.next();
@@ -62,10 +62,6 @@ public enum Interval {
         }
 
         NoteLetter a = targetNoteLetter;
-
-        if(targetNoteLetter == null){
-            throw new Exception("blablabl");
-        }
 
         Optional<Note> first = fullONoteList.stream()
                 .filter(n -> Note.noteToInt(n) == targetNoteInt)    // find all Notes, that are enharmoni)

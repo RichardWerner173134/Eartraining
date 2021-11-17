@@ -1,9 +1,9 @@
 package frame;
 
 
-import components.Answer;
-import components.QuestionChecker;
-import components.QuestionChecker.CorrectedValue;
+import components.answer.Answer;
+import components.answerCorrection.NoteAnswerCorrectedValue;
+import components.answerCorrection.DiatonicNoteChecker;
 import model.oldStuff.Sound;
 import components.SoundManager;
 
@@ -40,6 +40,7 @@ public class QuizFrame extends JFrame implements ActionListener {
     private JLabel labelNoteCount;
     private JLabel labelAnswer;
     private SoundManager sm;
+    private Answer answer;
 
 
     public QuizFrame() {
@@ -47,6 +48,8 @@ public class QuizFrame extends JFrame implements ActionListener {
         // keeps track of the selected chords and the config
         sm = new SoundManager();
         sm.playNewSound();
+
+        answer = Answer.getInstance();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));
@@ -185,7 +188,6 @@ public class QuizFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        Answer answer = Answer.getInstance();
         boolean isAdded = false;
 
         Object source = actionEvent.getSource();
@@ -195,57 +197,69 @@ public class QuizFrame extends JFrame implements ActionListener {
             sm.playCadence();
         } else if (btnShowAnswer.equals(source)) {
             sm.playNewSound();
-            Answer.resetAnswer();
+            answer.resetAnwer();
             labelAnswer.setText("");
         } else if(btnPlaySeparate.equals(source)){
             sm.playSoundSeparately();
         } else if (btnONE.equals(source)) {
             Sound I = new Sound(1, 'n');
-            isAdded = answer.addAnswer(I);
+            answer.addAnswer(I);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + I.toString() + ", ");
         } else if (btnTWO.equals(source)) {
             Sound II = new Sound(2, 'n');
-            isAdded = answer.addAnswer(II);
+            answer.addAnswer(II);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + II.toString() + ", ");
         } else if (btnTHREE.equals(source)) {
             Sound III = new Sound(3, 'n');
-            isAdded = answer.addAnswer(III);
+            answer.addAnswer(III);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + III.toString() + ", ");
         } else if (btnFOUR.equals(source)) {
             Sound IV = new Sound(4, 'n');
-            isAdded = answer.addAnswer(IV);
+            answer.addAnswer(IV);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + IV.toString() + ", ");
         } else if (btnFIVE.equals(source)) {
             Sound V = new Sound(5, 'n');
-            isAdded = answer.addAnswer(V);
+            answer.addAnswer(V);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + V.toString() + ", ");
         } else if (btnSIX.equals(source)) {
             Sound VI = new Sound(6, 'n');
-            isAdded = answer.addAnswer(VI);
+            answer.addAnswer(VI);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + VI.toString() + ", ");
         } else if (btnSEVEN.equals(source)) {
             Sound VII = new Sound(7, 'n');
-            isAdded = answer.addAnswer(VII);
+            answer.addAnswer(VII);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + VII.toString() + ", ");
         } else if (btnFLATTWO.equals(source)) {
             Sound IIb = new Sound(2, 'b');
-            isAdded = answer.addAnswer(IIb);
+            answer.addAnswer(IIb);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + IIb.toString() + ", ");
         } else if (btnFLATTHREE.equals(source)) {
             Sound IIIb = new Sound(3, 'b');
-            isAdded = answer.addAnswer(IIIb);
+            answer.addAnswer(IIIb);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + IIIb.toString() + ", ");
         } else if (btnSHARPFOUR.equals(source)) {
             Sound IVSHARP = new Sound(4, '#');
-            isAdded = answer.addAnswer(IVSHARP);
+            answer.addAnswer(IVSHARP);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + IVSHARP.toString() + ", ");
         } else if (btnFLATSIX.equals(source)) {
             Sound VIb = new Sound(6, 'b');
-            isAdded = answer.addAnswer(VIb);
+            answer.addAnswer(VIb);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + VIb.toString() + ", ");
         } else if (btnFLATSEVEN.equals(source)) {
             Sound VIIb = new Sound(7, 'b');
-            isAdded = answer.addAnswer(VIIb);
+            answer.addAnswer(VIIb);
+            isAdded = true;
             labelAnswer.setText(labelAnswer.getText() + VIIb.toString() + ", ");
         } else if (btnBack.equals(source)) {
             new Home();
@@ -253,20 +267,19 @@ public class QuizFrame extends JFrame implements ActionListener {
         }
 
         if(isAdded){
-
-            if(answer.getSounds().size() == sm.getNotes().size()){
-                List<CorrectedValue> correctedValues = QuestionChecker.checkQuestion(sm.getNotes(), answer);
-                Answer.resetAnswer();
+            if(answer.getAnswerObjects().size() == sm.getNotes().size()){
+                List<NoteAnswerCorrectedValue> correctedValues = DiatonicNoteChecker.checkQuestion(sm.getNotes(), answer);
+                answer.resetAnwer();
                 labelAnswer.setText("");
                 correctionOutput(correctedValues);
             }
         }
     }
 
-    private void correctionOutput(List<CorrectedValue> correctedValues) {
+    private void correctionOutput(List<NoteAnswerCorrectedValue> correctedValues) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Played Chord:\n");
+        sb.append("Played notes:\n");
         sb.append("--------------------------------------------\n");
 
         correctedValues.stream()

@@ -21,4 +21,9 @@ public enum NoteAccidental {
     private NoteAccidental(int displacement){
         this.displacement = displacement;
     }
+
+    @Override
+    public String toString() {
+        return accidental != null ? accidental : "";
+    }
 }

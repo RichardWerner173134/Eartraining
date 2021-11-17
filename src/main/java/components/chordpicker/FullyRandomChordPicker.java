@@ -15,6 +15,7 @@ import java.util.Random;
 public class FullyRandomChordPicker implements IChordPicker{
 
     private List<Chord> chords;
+    private int currentChordPointer;
 
     public FullyRandomChordPicker() {
         chords = new ArrayList<>();
@@ -50,7 +51,12 @@ public class FullyRandomChordPicker implements IChordPicker{
     @Override
     public Chord pickChord() {
         Random r = new Random();
-        int randomInt = r.nextInt(chords.size());
-        return chords.get(randomInt);
+        currentChordPointer = r.nextInt(chords.size());
+        return chords.get(currentChordPointer);
+    }
+
+    @Override
+    public Chord getCurrentChord() {
+        return chords.get(currentChordPointer);
     }
 }

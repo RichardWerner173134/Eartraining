@@ -1,6 +1,8 @@
 package components;
 
 
+import components.chordpicker.FullyRandomChordPicker;
+import components.chordpicker.IChordPicker;
 import components.notepicker.ChromaticNotePicker;
 import components.notepicker.DiatonicNotePicker;
 import components.notepicker.INotePicker;
@@ -21,12 +23,14 @@ public class SoundManager {
     private List<Note> notes;
     private Config config;
     private Player player;
+    private IChordPicker chordPicker;
 
 
     public SoundManager() {
         notes = new ArrayList<>();
         player = new Player();
         config = Config.getInstance();
+        chordPicker = new FullyRandomChordPicker();
     }
 
     public void playCurrentSound() {
@@ -167,14 +171,31 @@ public class SoundManager {
         thread.start();
     }
 
-    public void playChord(Chord chord){
+    public void playCurrentChord(){
+        Chord currentChord = chordPicker.getCurrentChord();
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        for (model.conceptOfNote.Note n : chord.getNotes()) {
+        for (model.conceptOfNote.Note n : currentChord.getNotes()) {
             i++;
             sb.append("V" + i + " ");
             sb.append(n.toString() + "5qqq");
             sb.append("\n");
+        }
+        Thread thread = new Thread(() -> player.play(sb.toString()));
+        thread.start();
+    }
+
+    public void playNewChord(){
+        Chord chord = chordPicker.pickChord();
+        playCurrentChord();
+    }
+
+    public void playChordSeparately(){
+        Chord currentChord = chordPicker.getCurrentChord();
+        StringBuilder sb = new StringBuilder();
+        for (model.conceptOfNote.Note n : currentChord.getNotes()) {
+            sb.append(n.toString());
+            sb.append("5qq ");
         }
         Thread thread = new Thread(() -> player.play(sb.toString()));
         thread.start();

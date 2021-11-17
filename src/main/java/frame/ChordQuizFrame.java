@@ -1,9 +1,10 @@
 package frame;
 
 import components.SoundManager;
-import components.chordpicker.FullyRandomChordPicker;
-import components.chordpicker.IChordPicker;
-import model.conceptOfChords.Chord;
+import components.answer.Answer;
+import components.answerCorrection.ChordAnswerCorrectedValue;
+import components.answerCorrection.ChordChecker;
+import model.conceptOfChords.ChordType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,12 +38,14 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
     private JButton btnBack;
 
     private SoundManager sm;
-    private IChordPicker chordPicker;
+    private Answer<ChordType> answer;
 
     public ChordQuizFrame() throws HeadlessException {
         // keeps track of the selected chords and the config
         sm = new SoundManager();
-        chordPicker = new FullyRandomChordPicker();
+        answer = Answer.getInstance();
+
+        sm.playCurrentChord();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));
@@ -137,15 +140,87 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         btnPlayTune.addActionListener(this);
         btnShowAnswer.addActionListener(this);
         btnBack.addActionListener(this);
+        btnPlaySeparate.addActionListener(this);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
+    public void actionPerformed(ActionEvent actionEvent) {
+        boolean isAdded = false;
 
-        if(btnShowAnswer.equals(source)){
-            Chord chord = chordPicker.pickChord();
-            sm.playChord(chord);
+        Object source = actionEvent.getSource();
+        if (btnPlayTune.equals(source)) {
+            sm.playCurrentChord();
+        } else if (btnShowAnswer.equals(source)) {
+            sm.playNewChord();
+            answer.resetAnwer();
+        } else if(btnPlaySeparate.equals(source)){
+            sm.playChordSeparately();
+        } else if(btnMajTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MAJOR);
+        } else if(btnMinTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MINOR);
+        } else if(btnMaj7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MAJOR_SEVENTH);
+        } else if(btnMin7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MINOR_SEVENTH);
+        } else if(btnDom7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DOMINANT_SEVENTH);
+        } else if(btnHalfDim7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.HALF_DIMINISHED_SEVENTH);
+        } else if(btnFullyDim7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.FULLY_DIMINISHED_SEVEN);
+        } else if(btnMinMaj7.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MINOR_MAJOR_SEVENTH);
+        }
+
+        ChordAnswerCorrectedValue chordAnswerCorrectedValue = null;
+        if(isAdded){
+            try {
+                chordAnswerCorrectedValue = ChordChecker.checkQuestion(sm.getChordPicker().getCurrentChord().getChordType(), answer);
+                correctionOutput(chordAnswerCorrectedValue);
+                answer.resetAnwer();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void correctionOutput(ChordAnswerCorrectedValue correctedValues){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(correctedValues.isCorrect() ? "Correct\n" : "Wrong\n");
+
+        sb.append("--------------------------------------------\n");
+        sb.append("Played Chordtype:  ");
+        sb.append(correctedValues.getActualChordType());
+        if(!correctedValues.isCorrect()) {
+            sb.append("\n");
+            sb.append("Submitted Chordtype:  ");
+            sb.append(correctedValues.getSubmittedChordType());
+        }
+
+
+        Object stringArray[] = {"Next", "Listen again"};
+        int checking_answer = JOptionPane.showOptionDialog(this,
+                sb.toString(),
+                "Checking Answer",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                stringArray,
+                stringArray[0]
+        );
+
+        if (checking_answer == 0){
+            sm.playNewChord();
         }
     }
 }

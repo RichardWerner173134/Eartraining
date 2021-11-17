@@ -47,6 +47,12 @@ public enum ChordType {
         if(scaleDegrees.contains(FLAT_THIRD) && scaleDegrees.contains(FIFTH)){
             return Tonality.MINOR;
         }
+        if(scaleDegrees.contains(FLAT_THIRD) && scaleDegrees.contains(FLAT_FIFTH)){
+            return Tonality.DIMINISHED;
+        }
+        if(scaleDegrees.contains(NATURAL_THIRD) && scaleDegrees.contains(SHARP_FIFTH)) {
+            return Tonality.AUGMENTED;
+        }
         throw new Exception("Cant calculate Tonality");
     }
 }

@@ -1,7 +1,6 @@
-package components;
+package components.answerCorrection;
 
-import lombok.Getter;
-import lombok.Setter;
+import components.answer.Answer;
 import model.oldStuff.Note;
 import model.oldStuff.Sound;
 
@@ -9,23 +8,9 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-public class QuestionChecker {
+public class DiatonicNoteChecker {
 
-    @Getter
-    @Setter
-    public static class CorrectedValue {
-        Sound correctedSound;
-        int countCorrect;
-        int countAnswer;
-
-        CorrectedValue(Sound correctedSound, int countCorrect, int countAnswer) {
-            this.correctedSound = correctedSound;
-            this.countCorrect = countCorrect;
-            this.countAnswer = countAnswer;
-        }
-    }
-
-    public static List<CorrectedValue> checkQuestion(List<Note> correctNotes, Answer answer){
+    public static List<NoteAnswerCorrectedValue> checkQuestion(List<Note> correctNotes, Answer answer){
 
         List<Sound> correctSounds = Note.getSoundWithoutOctave(correctNotes);
         Map<Sound, int[]> soundIntegerHashMap = new HashMap<>();
@@ -35,7 +20,7 @@ public class QuestionChecker {
          * contains all correctValues, actual number, submitted number
          * contains all answerValues, which aren`t listed as correctValues, 0, submitted number
           */
-        List<CorrectedValue> correctedValueList = new ArrayList<>();
+        List<NoteAnswerCorrectedValue> answerCorrectionList = new ArrayList<>();
 
         /**
          * fill the correctedValueList with the correct sounds
@@ -61,7 +46,7 @@ public class QuestionChecker {
         /**
          *
          */
-        for(Sound answerSound : answer.getSounds()){
+        for(Sound answerSound : (List<Sound>)answer.getAnswerObjects()){
             if (soundIntegerHashMap.keySet().stream().noneMatch(x -> x.equals(answerSound))) {
                 soundIntegerHashMap.put(answerSound, new int[]{0,1});
             } else {
@@ -75,12 +60,12 @@ public class QuestionChecker {
             }
         }
 
-        correctedValueList.addAll(
+        answerCorrectionList.addAll(
                 soundIntegerHashMap.entrySet()
                     .stream()
                     .map(soundEntry -> {
                         int[] value = soundEntry.getValue();
-                        return new CorrectedValue(
+                        return new NoteAnswerCorrectedValue(
                                 soundEntry.getKey(),
                                 value[0],
                                 value[1]
@@ -88,6 +73,6 @@ public class QuestionChecker {
                     })
                     .collect(Collectors.toList())
         );
-        return correctedValueList;
+        return answerCorrectionList;
     }
 }

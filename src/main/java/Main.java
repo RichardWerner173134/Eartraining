@@ -10,8 +10,9 @@ import static model.conceptOfNote.Note.C;
 
 public class Main {
     public static void main(String[] args) {
-        //new Home();
+        new Home();
         /*Player player = new Player();
+        player.play("C#5qqq C5qqq Cb5qqq ");
         Chord cMaj7 = new Chord(C, ChordType.MINOR_SEVENTH, null);
         List<Note> notes = cMaj7.getNotes();
         String playString = "";

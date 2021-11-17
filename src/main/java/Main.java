@@ -10,7 +10,7 @@ import static model.conceptOfNote.Note.C;
 
 public class Main {
     public static void main(String[] args) {
-        //new Home();
+        new Home();
         /*Player player = new Player();
         Chord cMaj7 = new Chord(C, ChordType.MINOR_SEVENTH, null);
         List<Note> notes = cMaj7.getNotes();

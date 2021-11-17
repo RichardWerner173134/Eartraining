@@ -46,6 +46,7 @@ public class QuizFrame extends JFrame implements ActionListener {
 
         // keeps track of the selected chords and the config
         sm = new SoundManager();
+        sm.playNewSound();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));

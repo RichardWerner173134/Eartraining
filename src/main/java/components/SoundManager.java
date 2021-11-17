@@ -6,6 +6,7 @@ import components.notepicker.DiatonicNotePicker;
 import components.notepicker.INotePicker;
 import components.notepicker.OneTwoThreeFourFiveNotePicker;
 import lombok.Getter;
+import model.conceptOfChords.Chord;
 import model.oldStuff.Note;
 import org.jfugue.Player;
 import java.util.ArrayList;
@@ -26,9 +27,6 @@ public class SoundManager {
         notes = new ArrayList<>();
         player = new Player();
         config = Config.getInstance();
-
-        this.notes = pickSound();
-        playCurrentSound();
     }
 
     public void playCurrentSound() {
@@ -165,6 +163,19 @@ public class SoundManager {
             else return -1;
         }).forEach(note  -> sb.append(note.getSoundString()).append("Q "));
 
+        Thread thread = new Thread(() -> player.play(sb.toString()));
+        thread.start();
+    }
+
+    public void playChord(Chord chord){
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (model.conceptOfNote.Note n : chord.getNotes()) {
+            i++;
+            sb.append("V" + i + " ");
+            sb.append(n.toString() + "5qqq");
+            sb.append("\n");
+        }
         Thread thread = new Thread(() -> player.play(sb.toString()));
         thread.start();
     }

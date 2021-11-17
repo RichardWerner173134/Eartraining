@@ -12,12 +12,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class FullyRandomChordPicker implements IChordPicker{
+public class AllChordsPicker implements IChordPicker{
 
     private List<Chord> chords;
     private int currentChordPointer;
 
-    public FullyRandomChordPicker() {
+    private static AllChordsPicker instance;
+
+    public static AllChordsPicker getInstance(){
+        if(instance == null){
+            instance = new AllChordsPicker();
+        }
+        return instance;
+    }
+
+    private AllChordsPicker() {
         chords = new ArrayList<>();
 
         CircleOfFifths instance = CircleOfFifths.getInstance();

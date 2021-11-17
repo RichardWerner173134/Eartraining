@@ -179,6 +179,12 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         } else if(btnMinMaj7.equals(source)){
             isAdded = true;
             answer.addAnswer(ChordType.MINOR_MAJOR_SEVENTH);
+        }  else if(btnAugTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.AUGMENTED);
+        } else if(btnDimTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DIMINISHED);
         } else if (btnBack.equals(source)) {
             new Home();
             dispose();

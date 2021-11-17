@@ -1,7 +1,7 @@
 package components;
 
 
-import components.chordpicker.FullyRandomChordPicker;
+import components.chordpicker.AllChordsPicker;
 import components.chordpicker.IChordPicker;
 import components.notepicker.ChromaticNotePicker;
 import components.notepicker.DiatonicNotePicker;
@@ -30,7 +30,7 @@ public class SoundManager {
         notes = new ArrayList<>();
         player = new Player();
         config = Config.getInstance();
-        chordPicker = new FullyRandomChordPicker();
+        chordPicker = config.getChordMix().getChordPicker();
     }
 
     public void playCurrentSound() {

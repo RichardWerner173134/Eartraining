@@ -13,6 +13,7 @@ public class Home extends JFrame {
     private JButton btnOptions;
     private JPanel panCenter;
     private JPanel panCenterFlow;
+    private JButton btnChords;
 
     public Home(){
 
@@ -32,12 +33,16 @@ public class Home extends JFrame {
         btnPlay.setBorder(BorderFactory.createRaisedBevelBorder());
         btnOptions.setPreferredSize(new Dimension(100, 60));
         btnOptions.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        btnChords.setPreferredSize(new Dimension(100, 60));
+        btnChords.setBorder(BorderFactory.createRaisedBevelBorder());
 
         btnPlay.setBackground(Color.LIGHT_GRAY);
         btnOptions.setBackground(Color.LIGHT_GRAY);
+        btnChords.setBackground(Color.LIGHT_GRAY);
 
         panCenterFlow.add(btnPlay);
         panCenterFlow.add(btnOptions);
+        panCenterFlow.add(btnChords);
 
         panCenter.setPreferredSize(new Dimension(200, 300));
     }
@@ -45,14 +50,14 @@ public class Home extends JFrame {
     private void initButtons() {
         btnPlay = new JButton("Play");
         btnOptions = new JButton("Options");
+        btnChords = new JButton("Chords");
         panCenter = new JPanel();
         panCenterFlow = new JPanel();
         btnPlay.addActionListener(new BtnActionListener());
         btnOptions.addActionListener(new BtnActionListener());
-        add(btnPlay, BorderLayout.CENTER);
+        btnChords.addActionListener(new BtnActionListener());
         btnPlay.setBackground(Color.BLACK);
         btnPlay.setSize(200, 200);
-        add(btnOptions);
         btnPlay.setVisible(true);
     }
 
@@ -70,6 +75,10 @@ public class Home extends JFrame {
                 System.out.println("starting Options");
                 dispose();
                 new OptionsFrame();
+            } else if(source == btnChords){
+                System.out.println("Starting Chord Game");
+                dispose();
+                new ChordQuizFrame();
             }
         }
     }

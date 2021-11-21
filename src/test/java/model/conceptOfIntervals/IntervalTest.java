@@ -125,4 +125,37 @@ public class IntervalTest {
         Assertions.assertThat(areEqual1).isTrue();
         Assertions.assertThat(areEqual2).isTrue();
     }
+
+    @Test
+    public void getONoteFromNoteAndInterval_should_return_same_note_when_perfectUnison(){
+        ONote c = new ONote(Note.C, Octave.FOUR);
+        ONote noteFromNoteAndInterval1 = null;
+
+        try {
+            noteFromNoteAndInterval1 = Interval.getONoteFromNoteAndInterval(c, Interval.PERFECT_UNISON);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        boolean areEqual1 = ONote.areEqual(c, noteFromNoteAndInterval1);
+
+        Assertions.assertThat(areEqual1).isTrue();
+    }
+
+    @Test
+    public void a (){
+        ONote e4 = new ONote(Note.E, Octave.FOUR);
+        ONote e5 = new ONote(Note.E, Octave.FIVE);
+        ONote noteFromNoteAndInterval1 = null;
+        try {
+            noteFromNoteAndInterval1 = Interval.getONoteFromNoteAndInterval(e4, Interval.PERFECT_OCTAVE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        boolean areEqual1 = ONote.areEqual(e5, noteFromNoteAndInterval1);
+
+        Assertions.assertThat(areEqual1).isTrue();
+    }
+
 }

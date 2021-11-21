@@ -63,4 +63,8 @@ public class ONote {
         return n1.getNote() == n2.getNote() &&
                 n1.getOctave() == n2.getOctave();
     }
+
+    public static ONote createCopy(ONote n){
+        return new ONote(n.getNote(), n.getOctave());
+    }
 }

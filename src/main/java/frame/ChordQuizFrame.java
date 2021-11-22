@@ -45,7 +45,7 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         sm = new SoundManager();
         answer = Answer.getInstance();
 
-        sm.playCurrentChord();
+        sm.playNewChord();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));

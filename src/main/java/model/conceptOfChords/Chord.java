@@ -1,7 +1,7 @@
 package model.conceptOfChords;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import model.conceptOfChords.voicing.ChordVoicing;
 import model.conceptOfIntervals.Interval;
 import model.conceptOfNote.Note;
 import model.conceptOfScale.ScaleDegree;
@@ -14,12 +14,12 @@ public class Chord {
     private Note rootNote;
     private List<Note> notes;
     private ChordType chordType;
-    private List<ChordVoicing> chordVoicings;
+    private List<ChordVoicing.VoicingEnum> chordVoicings;
 
-    public Chord(Note rootNote, ChordType chordType, List<ChordVoicing> chordVoicings) {
+    public Chord(Note rootNote, ChordType chordType, List<ChordVoicing.VoicingEnum> chordVoicings) {
         this.rootNote = rootNote;
         this.chordType = chordType;
-        this.chordVoicings = chordVoicings;
+        this.chordVoicings = chordVoicings != null ? chordVoicings : new ArrayList<>();
         try {
             this.notes = produceNotesForChord(rootNote, chordType.getScaleDegrees());
         } catch (Exception e) {

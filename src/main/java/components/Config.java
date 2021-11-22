@@ -1,6 +1,12 @@
 package components;
 
 
+import components.chordpicker.AllChordsPicker;
+import components.chordpicker.IChordPicker;
+import components.chordpicker.SeventhsChordPicker;
+import components.chordpicker.TriadicChordPicker;
+import lombok.Getter;
+
 public class Config {
     private static Config config;
 
@@ -8,10 +14,13 @@ public class Config {
     private ScaleDegreeMix scaleDegreeMix;
     private NumberOfOctaves numberOfOctaves;
 
+    private ChordMix chordMix;
+
     private Config(){
         numberOfNotes = NumberOfNotes.TWO;
         scaleDegreeMix = ScaleDegreeMix.ONE_TWO_THREE_FOUR_FIVE;
         numberOfOctaves = NumberOfOctaves.ONE_OCTAVE;
+        chordMix = ChordMix.ALL_CHORDS;
     }
 
     public static Config getInstance(){
@@ -59,6 +68,14 @@ public class Config {
                 return new int[]{3, 4, 5};
         }
         throw new NullPointerException("config not initialized");
+    }
+
+    public ChordMix getChordMix(){
+        return chordMix;
+    }
+
+    public void setChordMix(ChordMix chordMix){
+        this.chordMix = chordMix;
     }
 
     // enums
@@ -110,6 +127,19 @@ public class Config {
 
         public int getMaxNumberOfNotesLowerOctave(){
             return this.maxNumberOfNotesLowerOctave;
+        }
+    }
+
+    @Getter
+    public enum ChordMix {
+        ALL_CHORDS(AllChordsPicker.getInstance()),
+        TRIADIC_CHORDS(TriadicChordPicker.getInstance()),
+        SEVENTH_CHORDS(SeventhsChordPicker.getInstance());
+
+        private final IChordPicker chordPicker;
+
+        private ChordMix(IChordPicker chordPicker){
+            this.chordPicker = chordPicker;
         }
     }
 }

@@ -1,7 +1,6 @@
 package components;
 
 
-import components.chordpicker.FullyRandomChordPicker;
 import components.chordpicker.IChordPicker;
 import components.notepicker.ChromaticNotePicker;
 import components.notepicker.DiatonicNotePicker;
@@ -9,6 +8,11 @@ import components.notepicker.INotePicker;
 import components.notepicker.OneTwoThreeFourFiveNotePicker;
 import lombok.Getter;
 import model.conceptOfChords.Chord;
+import model.conceptOfChords.voicing.ChordVoicing;
+import model.conceptOfChords.voicing.VoicingComponent;
+import model.conceptOfIntervals.Interval;
+import model.conceptOfNote.ONote;
+import model.conceptOfNote.Octave;
 import model.oldStuff.Note;
 import org.jfugue.Player;
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ public class SoundManager {
         notes = new ArrayList<>();
         player = new Player();
         config = Config.getInstance();
-        chordPicker = new FullyRandomChordPicker();
+        chordPicker = config.getChordMix().getChordPicker();
     }
 
     public void playCurrentSound() {
@@ -173,30 +177,84 @@ public class SoundManager {
 
     public void playCurrentChord(){
         Chord currentChord = chordPicker.getCurrentChord();
+        ChordVoicing.VoicingEnum voicingForCurrentChord = chordPicker.getCurrentVoicing();
+
+        if(voicingForCurrentChord == null){
+            System.out.println("Whopsie");
+            return;
+        }
         StringBuilder sb = new StringBuilder();
+
+        ONote virtualRootNote = null;
+        try {
+            virtualRootNote = ONote.getFullONoteList().stream()
+                    .filter(o -> o.getNote().equals(currentChord.getRootNote()))
+                    .filter(o -> o.getOctave().equals(Octave.FOUR))
+                    .findFirst().orElseThrow(Exception::new);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         int i = 0;
-        for (model.conceptOfNote.Note n : currentChord.getNotes()) {
+        for (VoicingComponent vc : voicingForCurrentChord.getVoicing().getVoicingComponents()) {
             i++;
+            ONote newONote = null;
+            for(Interval partialInterval : vc.getIntervalFromRoot()){
+                try {
+                    newONote = Interval.getONoteFromNoteAndInterval(virtualRootNote, partialInterval);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             sb.append("V" + i + " ");
-            sb.append(n.toString() + "5qqq");
+            sb.append(newONote.getNote().toString() + newONote.getOctave().getNumber() + "qqq");
             sb.append("\n");
         }
+
         Thread thread = new Thread(() -> player.play(sb.toString()));
         thread.start();
     }
 
     public void playNewChord(){
-        Chord chord = chordPicker.pickChord();
+        chordPicker.pickChord();
+        chordPicker.pickVoicing();
         playCurrentChord();
     }
 
     public void playChordSeparately(){
         Chord currentChord = chordPicker.getCurrentChord();
-        StringBuilder sb = new StringBuilder();
-        for (model.conceptOfNote.Note n : currentChord.getNotes()) {
-            sb.append(n.toString());
-            sb.append("5qq ");
+        ChordVoicing.VoicingEnum voicingForCurrentChord = chordPicker.getCurrentVoicing();
+
+        if(voicingForCurrentChord == null){
+            System.out.println("Whopsie");
+            return;
         }
+        StringBuilder sb = new StringBuilder();
+
+        ONote virtualRootNote = null;
+        try {
+            virtualRootNote = ONote.getFullONoteList().stream()
+                    .filter(o -> o.getNote().equals(currentChord.getRootNote()))
+                    .filter(o -> o.getOctave().equals(Octave.FOUR))
+                    .findFirst().orElseThrow(Exception::new);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int i = 0;
+        for (VoicingComponent vc : voicingForCurrentChord.getVoicing().getVoicingComponents()) {
+            i++;
+            ONote newONote = ONote.createCopy(virtualRootNote);
+            for(Interval partialInterval : vc.getIntervalFromRoot()){
+                try {
+                    newONote = Interval.getONoteFromNoteAndInterval(newONote, partialInterval);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            sb.append(newONote.getNote().toString() + newONote.getOctave().getNumber() + "q ");
+        }
+
         Thread thread = new Thread(() -> player.play(sb.toString()));
         thread.start();
     }

@@ -50,7 +50,7 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(new Dimension(800, 600));
         setVisible(true);
-        setLayout(new GridLayout(4, 1));
+        setLayout(new GridLayout(3, 1));
         setResizable(false);
 
         // first row, contains navigation buttons
@@ -179,6 +179,15 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         } else if(btnMinMaj7.equals(source)){
             isAdded = true;
             answer.addAnswer(ChordType.MINOR_MAJOR_SEVENTH);
+        }  else if(btnAugTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.AUGMENTED);
+        } else if(btnDimTriad.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DIMINISHED);
+        } else if (btnBack.equals(source)) {
+            new Home();
+            dispose();
         }
 
         ChordAnswerCorrectedValue chordAnswerCorrectedValue = null;

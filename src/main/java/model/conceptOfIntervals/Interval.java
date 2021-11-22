@@ -21,9 +21,10 @@ public enum Interval {
     MAJOR_THIRD(4, 2, NATURAL),
 
     PERFECT_FOURTH(5, 3, NATURAL),
-    AUGMENTED_FOURTH(6, 3, SHARP),
 
+    AUGMENTED_FOURTH(6, 3, SHARP),
     DIMINISHED_FIFTH(6, 4, FLAT),
+
     PERFECT_FIFTH(7, 4, NATURAL),
 
     MINOR_SIXTH(8, 5, FLAT),
@@ -78,9 +79,12 @@ public enum Interval {
 
         NoteLetter targetNoteLetter = null;
         Iterator<NoteLetter> iterator = NoteLetter.getOrderedNoteLettersBeginningFromNoteLetter(startNote.getNote().getLetter()).iterator();
-        iterator.next(); // discard the first NoteLetter (its the same as startNote.getNote().getLetter()
+        targetNoteLetter = iterator.next();
         for(int i = 0; i < interval.getNumberOfLetterSteps(); i++){
             if(iterator.hasNext()){
+                targetNoteLetter = iterator.next();
+            } else {
+                iterator = NoteLetter.getOrderedNoteLettersBeginningFromNoteLetter(startNote.getNote().getLetter()).iterator();
                 targetNoteLetter = iterator.next();
             }
         }

@@ -7,7 +7,7 @@ public enum NoteAccidental {
     NATURAL(0),
     SHARP("#", 1),
     FLAT("b", -1),
-    DOUBLE_FLAT("B", -2),
+    DOUBLE_FLAT("bb", -2),
     DOUBLE_SHARP("##", +2);
 
     private String accidental;

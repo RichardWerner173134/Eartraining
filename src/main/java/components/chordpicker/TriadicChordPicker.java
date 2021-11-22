@@ -3,29 +3,31 @@ package components.chordpicker;
 import model.CircleOfFifths;
 import model.CircularLinkedListNode;
 import model.conceptOfChords.Chord;
-import model.conceptOfChords.ChordType;
 import model.conceptOfIntervals.NoteHolder;
 import model.conceptOfNote.Note;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
-public class TriadicChordPicker implements IChordPicker{
-    private List<Chord> chords;
-    private int currentChordPointer;
+import static model.conceptOfChords.ChordType.*;
+import static model.conceptOfChords.voicing.ChordVoicing.getVoicingsForChordType;
+
+public class TriadicChordPicker extends AbstractChordPicker {
 
     private static TriadicChordPicker instance;
 
     public static TriadicChordPicker getInstance(){
         if(instance == null){
-            instance = new TriadicChordPicker();
+            try {
+                instance = new TriadicChordPicker();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return instance;
     }
 
-    private TriadicChordPicker() {
+    private TriadicChordPicker() throws Exception {
         chords = new ArrayList<>();
 
         CircleOfFifths instance = CircleOfFifths.getInstance();
@@ -39,24 +41,12 @@ public class TriadicChordPicker implements IChordPicker{
         Note note = ((NoteHolder)circleIterator.next().getValue()).getNote(CircleOfFifths.Direction.UP);
         while(note != Note.C || firstRun) {
             firstRun = false;
-            chords.add(new Chord(note, ChordType.MAJOR, null));
-            chords.add(new Chord(note, ChordType.MINOR, null));
-            chords.add(new Chord(note, ChordType.DIMINISHED, null));
-            chords.add(new Chord(note, ChordType.AUGMENTED, null));
+            chords.add(new Chord(note, MAJOR, getVoicingsForChordType(MAJOR)));
+            chords.add(new Chord(note, MINOR, getVoicingsForChordType(MINOR)));
+            chords.add(new Chord(note, DIMINISHED, getVoicingsForChordType(DIMINISHED)));
+            chords.add(new Chord(note, AUGMENTED, getVoicingsForChordType(AUGMENTED)));
+
             note = ((NoteHolder)circleIterator.next().getValue()).getNote(CircleOfFifths.Direction.UP);
         }
-
-    }
-
-    @Override
-    public Chord pickChord() {
-        Random r = new Random();
-        currentChordPointer = r.nextInt(chords.size());
-        return chords.get(currentChordPointer);
-    }
-
-    @Override
-    public Chord getCurrentChord() {
-        return chords.get(currentChordPointer);
     }
 }

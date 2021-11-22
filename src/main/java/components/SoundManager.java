@@ -198,10 +198,10 @@ public class SoundManager {
         int i = 0;
         for (VoicingComponent vc : voicingForCurrentChord.getVoicing().getVoicingComponents()) {
             i++;
-            ONote newONote = null;
+            ONote newONote = ONote.createCopy(virtualRootNote);
             for(Interval partialInterval : vc.getIntervalFromRoot()){
                 try {
-                    newONote = Interval.getONoteFromNoteAndInterval(virtualRootNote, partialInterval);
+                    newONote = Interval.getONoteFromNoteAndInterval(newONote, partialInterval);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

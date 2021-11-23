@@ -343,7 +343,7 @@ public class ChordVoicing {
                         new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
                         new VoicingComponent(FLAT_SEVENTH, Arrays.asList(MINOR_SEVENTH)),
                         new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
-                        new VoicingComponent(FLAT_SECOND, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_SECOND))
+                        new VoicingComponent(FLAT_NINE, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_SECOND))
                 )
         ),
 
@@ -352,7 +352,7 @@ public class ChordVoicing {
                         new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
                         new VoicingComponent(FLAT_SEVENTH, Arrays.asList(MINOR_SEVENTH)),
                         new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
-                        new VoicingComponent(SHARP_SECOND, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_THIRD))
+                        new VoicingComponent(SHARP_NINE, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_THIRD))
                 )
         ),
 
@@ -382,6 +382,16 @@ public class ChordVoicing {
 
         private VoicingEnum (List<VoicingComponent> voicingComponents){
             this.voicing = new ChordVoicing(voicingComponents);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            for(VoicingComponent vc : voicing.getVoicingComponents()){
+                sb.append(vc.getScaleDegree().toString());
+                sb.append(" ");
+            }
+            return sb.toString();
         }
     }
 }

@@ -207,7 +207,7 @@ public class SoundManager {
                 }
             }
             sb.append("V" + i + " ");
-            sb.append(newONote.getNote().toString() + newONote.getOctave().getNumber() + "qqq");
+            sb.append(newONote.getNote().toString() + newONote.getOctave().getNumber() + "qqqq");
             sb.append("\n");
         }
 
@@ -225,10 +225,6 @@ public class SoundManager {
         Chord currentChord = chordPicker.getCurrentChord();
         ChordVoicing.VoicingEnum voicingForCurrentChord = chordPicker.getCurrentVoicing();
 
-        if(voicingForCurrentChord == null){
-            System.out.println("Whopsie");
-            return;
-        }
         StringBuilder sb = new StringBuilder();
 
         ONote virtualRootNote = null;

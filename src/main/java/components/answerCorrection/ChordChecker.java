@@ -3,11 +3,12 @@ package components.answerCorrection;
 import components.answer.Answer;
 import model.conceptOfChords.Chord;
 import model.conceptOfChords.ChordType;
+import model.conceptOfChords.voicing.ChordVoicing;
 
 import java.util.List;
 
 public class ChordChecker {
-    public static ChordAnswerCorrectedValue checkQuestion(ChordType expectedChordType, Answer<ChordType> answer) throws Exception {
+    public static ChordAnswerCorrectedValue checkQuestion(ChordType expectedChordType, ChordVoicing.VoicingEnum playedVoicing, Answer<ChordType> answer) throws Exception {
         List<ChordType> answerObjects = answer.getAnswerObjects();
         if(answerObjects == null){
             throw new Exception("Answer empty");
@@ -19,6 +20,6 @@ public class ChordChecker {
         ChordType submittedChordType = answer.getAnswerObjects().get(0);
 
         boolean isCorrect = expectedChordType == submittedChordType;
-        return new ChordAnswerCorrectedValue(expectedChordType, submittedChordType, isCorrect);
+        return new ChordAnswerCorrectedValue(expectedChordType, submittedChordType, isCorrect, playedVoicing);
     }
 }

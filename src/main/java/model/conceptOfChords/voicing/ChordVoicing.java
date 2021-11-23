@@ -73,6 +73,29 @@ public class ChordVoicing {
                 return Arrays.asList(
                         MINOR_MAJOR_SEVENTH_BASIC
                 );
+            case MAJOR_NINTH:
+                return Arrays.asList(
+                        MAJOR_NINTH_BASIC,
+                        MAJOR_NINTH_CLOSE
+                );
+            case MINOR_NINTH:
+                return Arrays.asList(
+                        MINOR_NINTH_BASIC,
+                        MINOR_NINTH_CLOSE
+                );
+            case DOMINANT_NINTH_FLAT_NINTH:
+                return Arrays.asList(
+                        DOMINANT_NINTH_FLAT_NINTH
+                );
+            case DOMINANT_NINTH_SHARP_NINTH:
+                return Arrays.asList(
+                        DOMINANT_NINTH_SHARP_NINTH
+                );
+            case DOMINANT_ELEVENTH_SHARP_ELEVEN:
+                return Arrays.asList(
+                    DOMINANT_ELEVENTH_SHARP_ELEVENTH1,
+                    DOMINANT_ELEVENTH_SHARP_ELEVENTH2
+                );
         }
         throw new Exception("alsdjhajh");
     }
@@ -133,7 +156,7 @@ public class ChordVoicing {
                 Arrays.asList(
                         new VoicingComponent(FIFTH, Arrays.asList(PERFECT_FIFTH)),
                         new VoicingComponent(ROOT, Arrays.asList(PERFECT_OCTAVE)),
-                        new VoicingComponent(FLAT_THIRD, Arrays.asList(MINOR_THIRD))
+                        new VoicingComponent(FLAT_THIRD, Arrays.asList(PERFECT_OCTAVE, MINOR_THIRD))
                 )
         ),
 
@@ -191,10 +214,10 @@ public class ChordVoicing {
         MAJOR_SEVENTH_CLOSED(
                 Arrays.asList(
                         new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
-                        new VoicingComponent(FIFTH, Arrays.asList(PERFECT_OCTAVE, PERFECT_FIFTH)),
-                        new VoicingComponent(NATURAL_SEVENTH, Arrays.asList(PERFECT_OCTAVE, MAJOR_SEVENTH)),
-                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_OCTAVE, PERFECT_UNISON)),
-                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MAJOR_THIRD))
+                        new VoicingComponent(FIFTH, Arrays.asList(PERFECT_FIFTH)),
+                        new VoicingComponent(NATURAL_SEVENTH, Arrays.asList(MAJOR_SEVENTH)),
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_OCTAVE)),
+                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD))
                 )
         ),
 
@@ -227,10 +250,10 @@ public class ChordVoicing {
         MINOR_SEVENTH_CLOSED(
                 Arrays.asList(
                         new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
-                        new VoicingComponent(FIFTH, Arrays.asList(PERFECT_OCTAVE, PERFECT_FIFTH)),
-                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(PERFECT_OCTAVE, MINOR_SEVENTH)),
-                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE)),
-                        new VoicingComponent(FLAT_THIRD, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_THIRD))
+                        new VoicingComponent(FIFTH, Arrays.asList(PERFECT_FIFTH)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(MINOR_SEVENTH)),
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_OCTAVE)),
+                        new VoicingComponent(FLAT_THIRD, Arrays.asList(PERFECT_OCTAVE, MINOR_THIRD))
                 )
         ),
 
@@ -313,6 +336,45 @@ public class ChordVoicing {
                         new VoicingComponent(FIFTH, Arrays.asList(PERFECT_FIFTH)),
                         new VoicingComponent(NATURAL_SEVENTH, Arrays.asList(MAJOR_SEVENTH))
                 )
+        ),
+
+        DOMINANT_NINTH_FLAT_NINTH(
+                Arrays.asList(
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(MINOR_SEVENTH)),
+                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
+                        new VoicingComponent(FLAT_NINE, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_SECOND))
+                )
+        ),
+
+        DOMINANT_NINTH_SHARP_NINTH(
+                Arrays.asList(
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(MINOR_SEVENTH)),
+                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
+                        new VoicingComponent(SHARP_NINE, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_THIRD))
+                )
+        ),
+
+        DOMINANT_ELEVENTH_SHARP_ELEVENTH1(
+                Arrays.asList(
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
+                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(PERFECT_OCTAVE, MINOR_SEVENTH)),
+                        new VoicingComponent(NATURAL_SECOND, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MAJOR_SECOND)),
+                        new VoicingComponent(SHARP_FOURTH, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, AUGMENTED_FOURTH))
+                )
+        ),
+
+        DOMINANT_ELEVENTH_SHARP_ELEVENTH2(
+                Arrays.asList(
+                        new VoicingComponent(ROOT, Arrays.asList(PERFECT_UNISON)),
+                        new VoicingComponent(NATURAL_THIRD, Arrays.asList(PERFECT_OCTAVE, MAJOR_THIRD)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(PERFECT_OCTAVE, MINOR_SEVENTH)),
+                        new VoicingComponent(NATURAL_SECOND, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MAJOR_SECOND)),
+                        new VoicingComponent(SHARP_FOURTH, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, AUGMENTED_FOURTH)),
+                        new VoicingComponent(FLAT_SEVENTH, Arrays.asList(PERFECT_OCTAVE, PERFECT_OCTAVE, MINOR_SEVENTH))
+                )
         )
         ;
 
@@ -320,6 +382,16 @@ public class ChordVoicing {
 
         private VoicingEnum (List<VoicingComponent> voicingComponents){
             this.voicing = new ChordVoicing(voicingComponents);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            for(VoicingComponent vc : voicing.getVoicingComponents()){
+                sb.append(vc.getScaleDegree().toString());
+                sb.append(" ");
+            }
+            return sb.toString();
         }
     }
 }

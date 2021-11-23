@@ -7,28 +7,35 @@ import static model.conceptOfIntervals.Interval.*;
 
 @Getter
 public enum ScaleDegree{
-    ROOT(PERFECT_UNISON),
-    NATURAL_SECOND(MAJOR_SECOND),
-    NATURAL_THIRD(MAJOR_THIRD),
-    FOURTH(PERFECT_FOURTH),
-    FIFTH(PERFECT_FIFTH),
-    NATURAL_SIXTH(MAJOR_SIXTH),
-    NATURAL_SEVENTH(MAJOR_SEVENTH),
+    ROOT(PERFECT_UNISON, "1"),
+    NATURAL_SECOND(MAJOR_SECOND, "2"),
+    NATURAL_THIRD(MAJOR_THIRD, "3"),
+    FOURTH(PERFECT_FOURTH, "4"),
+    FIFTH(PERFECT_FIFTH, "5"),
+    NATURAL_SIXTH(MAJOR_SIXTH, "6"),
+    NATURAL_SEVENTH(MAJOR_SEVENTH, "7"),
 
-    FLAT_SECOND(MINOR_SECOND),//FLAT_NINE
-    SHARP_SECOND(MINOR_THIRD),//SHARP_NINE
-    FLAT_THIRD(MINOR_THIRD),
-    SHARP_FOURTH(AUGMENTED_FOURTH),
-    FLAT_FIFTH(DIMINISHED_FIFTH),
-    SHARP_FIFTH(MINOR_SIXTH),
-    FLAT_SIXTH(MINOR_SIXTH),
-    FLAT_SEVENTH(MINOR_SEVENTH),
-    DOUBLE_DIMINISHED_SEVENTH(MAJOR_SIXTH);
+    FLAT_NINE(MINOR_SECOND, "b9"),//FLAT_NINE
+    SHARP_NINE(MINOR_THIRD, "#9"),//SHARP_NINE
+    FLAT_THIRD(MINOR_THIRD, "b3"),
+    SHARP_FOURTH(AUGMENTED_FOURTH, "#11"),
+    FLAT_FIFTH(DIMINISHED_FIFTH, "b5"),
+    SHARP_FIFTH(MINOR_SIXTH, "#5"),
+    FLAT_SIXTH(MINOR_SIXTH, "b6"),
+    FLAT_SEVENTH(MINOR_SEVENTH, "b7"),
+    DOUBLE_DIMINISHED_SEVENTH(MAJOR_SIXTH, "bb7");
 
 
     private Interval interval;
+    private String name;
 
-    private ScaleDegree(Interval interval){
+    private ScaleDegree(Interval interval, String name){
         this.interval = interval;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

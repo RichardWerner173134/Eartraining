@@ -1,10 +1,7 @@
 package components;
 
 
-import components.chordpicker.AllChordsPicker;
-import components.chordpicker.IChordPicker;
-import components.chordpicker.SeventhsChordPicker;
-import components.chordpicker.TriadicChordPicker;
+import components.chordpicker.*;
 import lombok.Getter;
 
 public class Config {
@@ -134,7 +131,8 @@ public class Config {
     public enum ChordMix {
         ALL_CHORDS(AllChordsPicker.getInstance()),
         TRIADIC_CHORDS(TriadicChordPicker.getInstance()),
-        SEVENTH_CHORDS(SeventhsChordPicker.getInstance());
+        SEVENTH_CHORDS(SeventhsChordPicker.getInstance()),
+        CRAZY_JAZZ_CHORDS(CrazyJazzChordsPicker.getInstance());
 
         private final IChordPicker chordPicker;
 

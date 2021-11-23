@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class ChordQuizFrame extends JFrame implements ActionListener {
     private JPanel panelButtons;
     private JButton btnPlayTune;
-    private JButton btnShowAnswer;
+    private JButton btnNextTune;
     private JButton btnPlaySeparate;
     private JPanel panelUserSelection;
 
@@ -34,13 +34,21 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
     private JButton btnFullyDim7;
     private JButton btnMinMaj7;
 
+    private JPanel panCrazyJazzChords;
+
+    private JButton btnMaj9;
+    private JButton btnMin9;
+    private JButton btnDom9b9;
+    private JButton btnDomS9;
+    private JButton btnDom11S11;
+
     private JPanel panelBack;
     private JButton btnBack;
 
     private SoundManager sm;
     private Answer<ChordType> answer;
 
-    public ChordQuizFrame() throws HeadlessException {
+    public ChordQuizFrame() {
         // keeps track of the selected chords and the config
         sm = new SoundManager();
         answer = Answer.getInstance();
@@ -70,24 +78,28 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         btnPlaySeparate.setSize(80, 30);
         btnPlaySeparate.setVisible(true);
 
-        btnShowAnswer = new JButton("Next Tune");
-        btnShowAnswer.setSize(80, 30);
-        btnShowAnswer.setVisible(true);
+        btnNextTune = new JButton("Next Tune");
+        btnNextTune.setSize(80, 30);
+        btnNextTune.setVisible(true);
 
         panelButtons.add(btnPlayTune);
         panelButtons.add(btnPlaySeparate);
-        panelButtons.add(btnShowAnswer);
+        panelButtons.add(btnNextTune);
 
         panelUserSelection = new JPanel();
-        panelUserSelection.setLayout(new GridLayout(2, 1));
+        panelUserSelection.setLayout(new GridLayout(3, 1));
 
-        panTriads = new JPanel();
         FlowLayout mgr = new FlowLayout();
         mgr.setHgap(40);
+
+        panTriads = new JPanel();
         panTriads.setLayout(mgr);
 
         panSeventh = new JPanel();
         panSeventh.setLayout(mgr);
+
+        panCrazyJazzChords = new JPanel();
+        panCrazyJazzChords.setLayout(mgr);
 
         btnMajTriad = new JButton("Maj");
         btnMinTriad = new JButton("Min");
@@ -101,6 +113,12 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         btnFullyDim7 = new JButton("Dim7");
         btnMinMaj7 = new JButton("MinMaj7");
 
+        btnMaj9 = new JButton("Maj9");
+        btnMin9 = new JButton("Min9");
+        btnDom9b9 = new JButton("Dom7b9");
+        btnDomS9 = new JButton("Dom7#9");
+        btnDom11S11 = new JButton("Dom9#11");
+
         panTriads.add(btnMajTriad);
         panTriads.add(btnMinTriad);
         panTriads.add(btnAugTriad);
@@ -113,8 +131,15 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         panSeventh.add(btnFullyDim7);
         panSeventh.add(btnMinMaj7);
 
+        panCrazyJazzChords.add(btnMaj9);
+        panCrazyJazzChords.add(btnMin9);
+        panCrazyJazzChords.add(btnDom9b9);
+        panCrazyJazzChords.add(btnDomS9);
+        panCrazyJazzChords.add(btnDom11S11);
+
         panelUserSelection.add(panTriads);
         panelUserSelection.add(panSeventh);
+        panelUserSelection.add(panCrazyJazzChords);
 
         // fourth row, contains home button
         panelBack = new JPanel();
@@ -136,9 +161,14 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         btnHalfDim7.addActionListener(this);
         btnFullyDim7.addActionListener(this);
         btnMinMaj7.addActionListener(this);
+        btnMaj9.addActionListener(this);
+        btnMin9.addActionListener(this);
+        btnDom9b9.addActionListener(this);
+        btnDomS9.addActionListener(this);
+        btnDom11S11.addActionListener(this);
 
         btnPlayTune.addActionListener(this);
-        btnShowAnswer.addActionListener(this);
+        btnNextTune.addActionListener(this);
         btnBack.addActionListener(this);
         btnPlaySeparate.addActionListener(this);
     }
@@ -150,7 +180,7 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         Object source = actionEvent.getSource();
         if (btnPlayTune.equals(source)) {
             sm.playCurrentChord();
-        } else if (btnShowAnswer.equals(source)) {
+        } else if (btnNextTune.equals(source)) {
             sm.playNewChord();
             answer.resetAnwer();
         } else if(btnPlaySeparate.equals(source)){
@@ -182,9 +212,23 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         }  else if(btnAugTriad.equals(source)){
             isAdded = true;
             answer.addAnswer(ChordType.AUGMENTED);
-        } else if(btnDimTriad.equals(source)){
+        } else if(btnDimTriad.equals(source)) {
             isAdded = true;
             answer.addAnswer(ChordType.DIMINISHED);
+        } else if(btnMaj9.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.MAJOR_NINTH);
+        } else if(btnMin9.equals(source)){
+            isAdded = true;answer.addAnswer(ChordType.MINOR_NINTH);
+        } else if(btnDom9b9.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DOMINANT_NINTH_FLAT_NINTH);
+        } else if(btnDomS9.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DOMINANT_NINTH_SHARP_NINTH);
+        } else if(btnDom11S11.equals(source)){
+            isAdded = true;
+            answer.addAnswer(ChordType.DOMINANT_ELEVENTH_SHARP_ELEVEN);
         } else if (btnBack.equals(source)) {
             new Home();
             dispose();
@@ -193,7 +237,7 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         ChordAnswerCorrectedValue chordAnswerCorrectedValue = null;
         if(isAdded){
             try {
-                chordAnswerCorrectedValue = ChordChecker.checkQuestion(sm.getChordPicker().getCurrentChord().getChordType(), answer);
+                chordAnswerCorrectedValue = ChordChecker.checkQuestion(sm.getChordPicker().getCurrentChord().getChordType(), sm.getChordPicker().getCurrentVoicing(), answer);
                 correctionOutput(chordAnswerCorrectedValue);
                 answer.resetAnwer();
             } catch (Exception e) {
@@ -210,11 +254,15 @@ public class ChordQuizFrame extends JFrame implements ActionListener {
         sb.append("--------------------------------------------\n");
         sb.append("Played Chordtype:  ");
         sb.append(correctedValues.getActualChordType());
+        sb.append("\n");
         if(!correctedValues.isCorrect()) {
-            sb.append("\n");
             sb.append("Submitted Chordtype:  ");
             sb.append(correctedValues.getSubmittedChordType());
+            sb.append("\n");
         }
+
+        sb.append("Played Voicing: ");
+        sb.append(correctedValues.getPlayedVoicing().toString());
 
 
         Object stringArray[] = {"Next", "Listen again"};

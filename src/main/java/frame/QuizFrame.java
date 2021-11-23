@@ -17,7 +17,7 @@ public class QuizFrame extends JFrame implements ActionListener {
     private JPanel panelButtons;
     private JButton btnPlayTune;
     private JButton btnCadence;
-    private JButton btnShowAnswer;
+    private JButton btnNextTune;
     private JButton btnPlaySeparate;
     private JPanel panelUserSelection;
     private JPanel panPanNaturals;
@@ -78,14 +78,14 @@ public class QuizFrame extends JFrame implements ActionListener {
         btnPlaySeparate.setSize(80, 30);
         btnPlaySeparate.setVisible(true);
 
-        btnShowAnswer = new JButton("Next Tune");
-        btnShowAnswer.setSize(80, 30);
-        btnShowAnswer.setVisible(true);
+        btnNextTune = new JButton("Next Tune");
+        btnNextTune.setSize(80, 30);
+        btnNextTune.setVisible(true);
 
         panelButtons.add(btnPlayTune);
         panelButtons.add(btnCadence);
         panelButtons.add(btnPlaySeparate);
-        panelButtons.add(btnShowAnswer);
+        panelButtons.add(btnNextTune);
 
         // second row, contains scaleDegreesButtons to receive user input
         // divided into 2 rows, natural notes and accidental notes
@@ -180,7 +180,7 @@ public class QuizFrame extends JFrame implements ActionListener {
         btnFLATSEVEN.addActionListener(this);
         btnPlayTune.addActionListener(this);
         btnCadence.addActionListener(this);
-        btnShowAnswer.addActionListener(this);
+        btnNextTune.addActionListener(this);
         btnPlaySeparate.addActionListener(this);
         btnBack.addActionListener(this);
 
@@ -195,7 +195,7 @@ public class QuizFrame extends JFrame implements ActionListener {
             sm.playCurrentSound();
         } else if (btnCadence.equals(source)) {
             sm.playCadence();
-        } else if (btnShowAnswer.equals(source)) {
+        } else if (btnNextTune.equals(source)) {
             sm.playNewSound();
             answer.resetAnwer();
             labelAnswer.setText("");

@@ -53,6 +53,12 @@ public class AllChordsPicker extends AbstractChordPicker {
             chords.add(new Chord(note, FULLY_DIMINISHED_SEVEN, getVoicingsForChordType(FULLY_DIMINISHED_SEVEN)));
             chords.add(new Chord(note, MINOR_MAJOR_SEVENTH, getVoicingsForChordType(MINOR_MAJOR_SEVENTH)));
 
+            chords.add(new Chord(note, MAJOR_NINTH, getVoicingsForChordType(MAJOR_NINTH)));
+            chords.add(new Chord(note, MINOR_NINTH, getVoicingsForChordType(MINOR_NINTH)));
+            chords.add(new Chord(note, DOMINANT_NINTH_FLAT_NINTH, getVoicingsForChordType(DOMINANT_NINTH_FLAT_NINTH)));
+            chords.add(new Chord(note, DOMINANT_NINTH_SHARP_NINTH, getVoicingsForChordType(DOMINANT_NINTH_SHARP_NINTH)));
+            chords.add(new Chord(note, DOMINANT_ELEVENTH_SHARP_ELEVEN, getVoicingsForChordType(DOMINANT_ELEVENTH_SHARP_ELEVEN)));
+
             note = ((NoteHolder)circleIterator.next().getValue()).getNote(CircleOfFifths.Direction.UP);
         }
     }

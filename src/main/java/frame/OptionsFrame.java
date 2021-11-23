@@ -27,6 +27,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
     private JRadioButton jCheckBoxAllChords;
     private JRadioButton jCheckBoxTriads;
     private JRadioButton jCheckboxSevenths;
+    private JRadioButton jCheckboxCrazyJazzChords;
 
     private JRadioButton jRadioButtonOct1, jRadioButtonOct2, jRadioButtonOct3;
 
@@ -81,14 +82,17 @@ public class OptionsFrame extends JFrame implements ActionListener{
         jCheckBoxAllChords = new JRadioButton("All Chords");
         jCheckBoxTriads = new JRadioButton("Triads");
         jCheckboxSevenths = new JRadioButton("Sevenths");
+        jCheckboxCrazyJazzChords = new JRadioButton("Crazy Jazz Chords");
 
         jCheckBoxAllChords.addActionListener(this);
         jCheckBoxTriads.addActionListener(this);
         jCheckboxSevenths.addActionListener(this);
+        jCheckboxCrazyJazzChords.addActionListener(this);
 
         buttonGroupChordMix.add(jCheckBoxAllChords);
         buttonGroupChordMix.add(jCheckBoxTriads);
         buttonGroupChordMix.add(jCheckboxSevenths);
+        buttonGroupChordMix.add(jCheckboxCrazyJazzChords);
 
         // init Back Button
         buttonBack = new JButton("Go Back");
@@ -206,6 +210,8 @@ public class OptionsFrame extends JFrame implements ActionListener{
         gblChordMix.setConstraints(jCheckBoxTriads, bgcChordMix);
         bgcChordMix = getGbc(0, 3, 1, 1, 0, GridBagConstraints.WEST);
         gblChordMix.setConstraints(jCheckboxSevenths, bgcChordMix);
+        bgcChordMix = getGbc(0, 4, 1, 1, 0, GridBagConstraints.WEST);
+        gblChordMix.setConstraints(jCheckboxCrazyJazzChords, bgcChordMix);
 
         panelChordMix.setPreferredSize(new Dimension(350, 150));
         panelChordMix.setLayout(gblChordMix);
@@ -213,6 +219,7 @@ public class OptionsFrame extends JFrame implements ActionListener{
         panelChordMix.add(jCheckBoxAllChords);
         panelChordMix.add(jCheckBoxTriads);
         panelChordMix.add(jCheckboxSevenths);
+        panelChordMix.add(jCheckboxCrazyJazzChords);
 
         // add backButton to Panel
         JPanel panelBackButton = new JPanel();
@@ -318,6 +325,10 @@ public class OptionsFrame extends JFrame implements ActionListener{
                 buttonGroupChordMix.clearSelection();
                 jCheckboxSevenths.setSelected(true);
                 break;
+            case CRAZY_JAZZ_CHORDS:
+                buttonGroupChordMix.clearSelection();
+                jCheckboxCrazyJazzChords.setSelected(true);
+                break;
         }
     }
 
@@ -373,6 +384,9 @@ public class OptionsFrame extends JFrame implements ActionListener{
         }
         if(actionEvent.getSource() == jCheckboxSevenths){
             chordMix = Config.ChordMix.SEVENTH_CHORDS;
+        }
+        if(actionEvent.getSource() == jCheckboxCrazyJazzChords){
+            chordMix = Config.ChordMix.CRAZY_JAZZ_CHORDS;
         }
 
 
